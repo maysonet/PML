@@ -1,11 +1,13 @@
-##Introduction
+## Introduction
+
 Project management is a growing field used increasingly by businesses of all sizes. It is important to use dedicated project managers to oversee projects from conception to completion. Understanding effective project management techniques helps organizations carry out large-scale projects on time, on budget and with minimal disruption to the rest of the business.
 
 Implementing a project involve much knowledge about the theme. The first step to achieve the goal is to have a good planning. This means that two of the most important steps are planning and designing the project. In this project we propose a helpful tool to help in the project management specifically in the planning and design steps.
 
 For this, a programming language will be implemented in which users can program their own brainstorming, schedule and generate graphs. Such a language will include in its implementation a basics forms to personalize this tasks like different colors and different icons. The goal of “PM Language” is that a team member be able to implement their own tools to help in the planning and design steps, depending of the project needs.
 
-##Language Features
+## Language Features
+
 PM Language will include the following features:
 - Basic feature to create a generic brainstorming.
 - Allows you to create a simple project and schedule its tasks.
@@ -16,7 +18,8 @@ PM Language will include the following features:
 - Basic feature to create different types of graphs.
 
 
-##Requirements
+## Requirements
+
 1. Brainstorming:
 - user will be able to accept one title
 - user will be able to accept a minimum of 1 idea and a maximum of 10
