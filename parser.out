@@ -1,0 +1,107 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ADDuser
+    NEW
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> command NAME ID DATE DATE
+Rule 2     statement -> command uNAME ID
+Rule 3     command -> NAME
+
+Terminals, with rules where they appear
+
+ADDuser              : 
+DATE                 : 1 1
+ID                   : 1 2
+NAME                 : 1 3
+NEW                  : 
+error                : 
+uNAME                : 2
+
+Nonterminals, with rules where they appear
+
+command              : 1 2
+statement            : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . command NAME ID DATE DATE
+    (2) statement -> . command uNAME ID
+    (3) command -> . NAME
+
+    NAME            shift and go to state 3
+
+    statement                      shift and go to state 1
+    command                        shift and go to state 2
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> command . NAME ID DATE DATE
+    (2) statement -> command . uNAME ID
+
+    NAME            shift and go to state 4
+    uNAME           shift and go to state 5
+
+
+state 3
+
+    (3) command -> NAME .
+
+    NAME            reduce using rule 3 (command -> NAME .)
+    uNAME           reduce using rule 3 (command -> NAME .)
+
+
+state 4
+
+    (1) statement -> command NAME . ID DATE DATE
+
+    ID              shift and go to state 6
+
+
+state 5
+
+    (2) statement -> command uNAME . ID
+
+    ID              shift and go to state 7
+
+
+state 6
+
+    (1) statement -> command NAME ID . DATE DATE
+
+    DATE            shift and go to state 8
+
+
+state 7
+
+    (2) statement -> command uNAME ID .
+
+    $end            reduce using rule 2 (statement -> command uNAME ID .)
+
+
+state 8
+
+    (1) statement -> command NAME ID DATE . DATE
+
+    DATE            shift and go to state 9
+
+
+state 9
+
+    (1) statement -> command NAME ID DATE DATE .
+
+    $end            reduce using rule 1 (statement -> command NAME ID DATE DATE .)
+
