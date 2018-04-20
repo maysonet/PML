@@ -6,14 +6,17 @@ tokens = Lexer.tokens
 #Parsing Rules
 def p_statement(p):
     """
-    statement : command NAME ID DATE DATE
-                | command uNAME ID
+    statement : command NAME ID
+                | command NAME DATE DATE
+                | command NAME
     """
     try:
         if p[1] == 'NEW':
-            print(Utils.new_project(p[2], p[3], p[4], p[5]))
-        if p[1] == 'ADDuser':
-            print(Utils.add_user(p[2], p[3]))
+            print(Utils.new_project(p[2], p[3]))
+        if p[1] == 'USER':
+            print(Utils.add_user(p[2]))
+        if p[1] == 'TASK':
+            print(Utils.add_task(p[2], p[3], p[4]))
 
     except:
         print('Invalid Parameters')

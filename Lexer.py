@@ -3,18 +3,21 @@ import ply.lex as lex
 # Reserved Words
 reserved = {
     'new': 'NEW',
-    'add': 'ADDuser'
+    'user': 'USER',
+    'task': 'TASK'
 }
 
 # Tokens
-tokens = ["NAME", "DATE", "ID", "uNAME"] + list(reserved.values())
+tokens = ["NAME", "DATE", "ID"] + list(reserved.values())
 
 # Simple Regular Expressions
 t_ignore = ' \t'
 t_NAME = r'[a-zA-Z]+'
-t_uNAME = r'@[a-zA-Z]+'
 t_ID = r'[\d+]+'
-t_DATE = r'\d+/[a-zA-Z]+/\d+'
+## NEED regular expression to accept characters and spaces - for tasks
+
+#date format: 2012-02-20 -- year-month-day
+t_DATE = r'\d+-\d+-\d+'
 
 def t_error(t):
     print('Illegal character %s', t.value[0])
@@ -25,7 +28,7 @@ def t_error(t):
 lexer = lex.lex()
 
 # Test it out
-data = '''NEW projectName 1 12/may/1231 12/jun/1231 @Chris'''
+data = '''NEW projectName 1 2012-02-20 2012-02-26 @Chris'''
 
 # Give the lexer some input
 lexer.input(data)
