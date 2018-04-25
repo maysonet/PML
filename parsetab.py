@@ -27,8 +27,8 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> statement","S'",1,None,None,None),
-  ('statement -> command NAME ID','statement',3,'p_statement','Parser.py',9),
-  ('statement -> command NAME DATE DATE','statement',4,'p_statement','Parser.py',10),
-  ('statement -> command NAME','statement',2,'p_statement','Parser.py',11),
-  ('command -> NAME','command',1,'p_command','Parser.py',27),
+  ('statement -> command NAME ID','statement',3,'p_statement','Parser.py',10),
+  ('statement -> command NAME DATE DATE','statement',4,'p_statement','Parser.py',11),
+  ('statement -> command NAME','statement',2,'p_statement','Parser.py',12),
+  ('command -> NAME','command',1,'p_command','Parser.py',32),
 ]

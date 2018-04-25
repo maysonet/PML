@@ -1,0 +1,13 @@
+digraph {
+	"main topic"
+	"idea 1"
+	"idea 2"
+	"idea 3"
+	"idea 4"
+	"idea 5"
+	"main topic" -> "idea 1"
+	"main topic" -> "idea 2"
+	"main topic" -> "idea 3"
+	"main topic" -> "idea 4"
+	"main topic" -> "idea 5"
+}
