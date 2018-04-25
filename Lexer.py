@@ -2,21 +2,41 @@ import ply.lex as lex
 
 # Reserved Words
 reserved = {
-    'new': 'NEW',
-    'user': 'USER',
-    'task': 'TASK',
-    'brainstorm':'BRAINSTORM',
-    'idea':'IDEA',
-    'diagram':'DIAGRAM'
+    'new_project': 'NEW_PROJECT',
+    'new_member': 'NEW_MEMBER',
+    'delete_member' : 'DELETE_MEMBER',
+    'create_brainstorm':'CREATE_BRAINSTORM',
+    'add_idea':'ADD_IDEA',
+    'delete_idea':'DELETE_IDEA',
+    'add_task': 'ADD_TASK',
+    'edit_task': 'EDIT_TASK',
+    'delete_task': 'DELETE_TASK',
+    'assign_task': 'ASSIGN_TASK',
+    'create_graph': 'CREATE_GRAPH',
+    'graph_type':'GRAPH_TYPE',
+    'graph_axis':'GRAPH_AXIS',
+    'graph_data' : 'GRAPH_DATA',
+    'view_brainstorm':'VIEW_BRAINSTORM',
+    'view_schedule': 'VIEW_SCHEDULE',
+    'view_tasks' : 'VIEW_TASKS',
+    'list_today' : 'LIST_TODAY',
+    'list_week' : 'LIST_WEEK',
+    'list_overdue' : 'LIST_OVERDUE',
+    'generate_project' : 'GENERATE_PROJECT'
+
 }
 
 # Tokens
-tokens = ["NAME", "DATE", "ID"] + list(reserved.values())
+tokens = ["NAME","USERNAME", "DATE", "NUMBER", "PHRASE", "COMMAND"] + list(reserved.values())
 
 # Simple Regular Expressions
 t_ignore = ' \t'
+t_USERNAME = r'@[a-zA-Z]+'
 t_NAME = r'[a-zA-Z]+'
-t_ID = r'[\d+]+'
+
+t_PHRASE = r'[a-zA-Z ]+'
+t_NUMBER = r'[\d+]+'
+t_COMMAND = r'[a-zA-Z]+_[a-zA-Z]+'
 ## NEED regular expression to accept characters and spaces - for tasks
 
 #date format: 2012-02-20 -- year-month-day
@@ -31,10 +51,14 @@ def t_error(t):
 lexer = lex.lex()
 
 # Test it out
-data = '''NEW projectName 1 2012-02-20 2012-02-26 @Chris'''
+data0 = '''new_project project Name'''
+data1 = '''new_member member Name project Name'''
+data1 = '''delete_member @member  project Name'''
+data2 = '''create_brainstorm brainstorn Name '''
+#data1 = 2012-02-20 2012-02-26
 
 # Give the lexer some input
-lexer.input(data)
+lexer.input(data1)
 
 # Tokenize
 while True:
