@@ -1,7 +1,7 @@
 import datetime
 import graphviz as gv
 import functools
-import pickle
+import pickle #For data persistense
 
 #Global variables
 last_tid = 0
@@ -63,8 +63,9 @@ class Project:
 
     def new_brainstorm(self, title):
         self.bs = Brainstorm(title)
+        print("Brainstorming was created.")
 
-    def add_idea(self, idea):
+    def new_idea(self, idea):
         brainstorm = self.bs
         if brainstorm is not None:
             brainstorm.ideas.append(idea)
@@ -75,6 +76,7 @@ class Project:
     def generate_brainstorming_diagram(self):
         brainstorm = self.bs
         if brainstorm is not None:
+            print("Generating diagram...")
             #print(brainstorm.title)
             #print(brainstorm.ideas)
             arr1 = []
@@ -179,6 +181,39 @@ def add_task(task, start_date, end_date):
             proj.new_task(task, start_date, end_date)
             save_project(proj)
             proj.show_tasks()
+    except FileNotFoundError:
+            print("ERROR: No projects created")
+
+def add_idea(idea):
+    try:
+        #Load project data
+        with open(filename, 'rb') as input:
+            proj = pickle.load(input)
+            proj.new_idea(idea)
+            save_project(proj)
+
+    except FileNotFoundError:
+            print("ERROR: No projects created")
+
+def add_brainstorm(title):
+    try:
+        #Load project data
+        with open(filename, 'rb') as input:
+            proj = pickle.load(input)
+            proj.new_brainstorm(title)
+            save_project(proj)
+
+    except FileNotFoundError:
+            print("ERROR: No projects created")
+
+def generate_diagram():
+    try:
+        #Load project data
+        with open(filename, 'rb') as input:
+            proj = pickle.load(input)
+            proj.generate_brainstorming_diagram()
+            #save_project(proj)
+
     except FileNotFoundError:
             print("ERROR: No projects created")
 

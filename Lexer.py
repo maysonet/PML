@@ -4,7 +4,10 @@ import ply.lex as lex
 reserved = {
     'new': 'NEW',
     'user': 'USER',
-    'task': 'TASK'
+    'task': 'TASK',
+    'brainstorm':'BRAINSTORM',
+    'idea':'IDEA',
+    'diagram':'DIAGRAM'
 }
 
 # Tokens

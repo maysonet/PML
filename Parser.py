@@ -10,14 +10,36 @@ def p_statement(p):
     statement : command NAME ID
                 | command NAME DATE DATE
                 | command NAME
+                | command
     """
     try:
         if p[1] == 'NEW':
             Utils.new_project(p[2], p[3])
+            # OR we can just accept project name and let the system assign ID
+            # Need to fix input rules so that SPACES are allowed in Project name
         if p[1] == 'USER':
             Utils.add_user(p[2])
         if p[1] == 'TASK':
             Utils.add_task(p[2], p[3], p[4])
+            # Need to fix input rules so that SPACES are allowed in task description
+
+        if p[1] == 'BRAINSTORM':
+            Utils.add_brainstorm(p[2])
+
+        if p[1] == 'IDEA':
+            Utils.add_idea(p[2])
+
+        if p[1] == 'DIAGRAM':
+            Utils.generate_diagram()
+
+        #The following NEED to be IMPLEMENTED in LEXER and UTILS
+        if p[1] == 'GANTT':
+            pass
+        if p[1] == 'TODAY':
+            pass
+        if p[1] == 'WEEK':
+            pass
+
 
     except:
         print('Invalid Parameters')

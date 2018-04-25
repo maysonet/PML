@@ -2,6 +2,9 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
+    BRAINSTORM
+    DIAGRAM
+    IDEA
     NEW
     TASK
     USER
@@ -12,13 +15,17 @@ Rule 0     S' -> statement
 Rule 1     statement -> command NAME ID
 Rule 2     statement -> command NAME DATE DATE
 Rule 3     statement -> command NAME
-Rule 4     command -> NAME
+Rule 4     statement -> command
+Rule 5     command -> NAME
 
 Terminals, with rules where they appear
 
+BRAINSTORM           : 
 DATE                 : 2 2
+DIAGRAM              : 
 ID                   : 1
-NAME                 : 1 2 3 4
+IDEA                 : 
+NAME                 : 1 2 3 5
 NEW                  : 
 TASK                 : 
 USER                 : 
@@ -26,7 +33,7 @@ error                :
 
 Nonterminals, with rules where they appear
 
-command              : 1 2 3
+command              : 1 2 3 4
 statement            : 0
 
 Parsing method: LALR
@@ -37,7 +44,8 @@ state 0
     (1) statement -> . command NAME ID
     (2) statement -> . command NAME DATE DATE
     (3) statement -> . command NAME
-    (4) command -> . NAME
+    (4) statement -> . command
+    (5) command -> . NAME
 
     NAME            shift and go to state 3
 
@@ -55,15 +63,18 @@ state 2
     (1) statement -> command . NAME ID
     (2) statement -> command . NAME DATE DATE
     (3) statement -> command . NAME
+    (4) statement -> command .
 
     NAME            shift and go to state 4
+    $end            reduce using rule 4 (statement -> command .)
 
 
 state 3
 
-    (4) command -> NAME .
+    (5) command -> NAME .
 
-    NAME            reduce using rule 4 (command -> NAME .)
+    NAME            reduce using rule 5 (command -> NAME .)
+    $end            reduce using rule 5 (command -> NAME .)
 
 
 state 4

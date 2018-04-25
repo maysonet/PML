@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'DATE ID NAME NEW TASK USER\n    statement : command NAME ID\n                | command NAME DATE DATE\n                | command NAME\n    \n    command : NAME\n    '
+_lr_signature = 'BRAINSTORM DATE DIAGRAM ID IDEA NAME NEW TASK USER\n    statement : command NAME ID\n                | command NAME DATE DATE\n                | command NAME\n                | command\n    \n    command : NAME\n    '
     
-_lr_action_items = {'NAME':([0,2,3,],[3,4,-4,]),'$end':([1,4,5,7,],[0,-3,-1,-2,]),'ID':([4,],[5,]),'DATE':([4,6,],[6,7,]),}
+_lr_action_items = {'NAME':([0,2,3,],[3,4,-5,]),'$end':([1,2,3,4,5,7,],[0,-4,-5,-3,-1,-2,]),'ID':([4,],[5,]),'DATE':([4,6,],[6,7,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -27,8 +27,9 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> statement","S'",1,None,None,None),
-  ('statement -> command NAME ID','statement',3,'p_statement','Parser.py',10),
-  ('statement -> command NAME DATE DATE','statement',4,'p_statement','Parser.py',11),
-  ('statement -> command NAME','statement',2,'p_statement','Parser.py',12),
-  ('command -> NAME','command',1,'p_command','Parser.py',32),
+  ('statement -> command NAME ID','statement',3,'p_statement','Parser.py',9),
+  ('statement -> command NAME DATE DATE','statement',4,'p_statement','Parser.py',10),
+  ('statement -> command NAME','statement',2,'p_statement','Parser.py',11),
+  ('statement -> command','statement',1,'p_statement','Parser.py',12),
+  ('command -> NAME','command',1,'p_command','Parser.py',50),
 ]
