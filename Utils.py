@@ -6,7 +6,8 @@ import pickle #For data persistense
 #Global variables
 last_tid = 0
 last_uid = 0
-filename = "data.PML"
+last_pid = 0
+filename = None
 
 #Utils for generating diagrams
 graph = functools.partial(gv.Graph, format='png')
@@ -51,15 +52,20 @@ class User:
         self.id = last_uid
 
 class Project:
-    def __init__(self, name, id):
+    def __init__(self, name):
         self.name = name
-        self.id = id
+        global last_pid
+        last_pid += 1
+        self.id = last_pid
         self.tasks = []
         self.users = []
         self.bs = None
         self.total_users = 0
         self.total_tasks = 0
 
+
+    def get_pid(self):
+        return self.id
 
     def new_brainstorm(self, title):
         self.bs = Brainstorm(title)
@@ -148,18 +154,28 @@ class Project:
 
 #Util methods
 
-def new_project(pname, pid):
-    save_project(Project(pname, pid))
-    print('Project created.')
+def get_filename(pid):
+    global filename
+    filename = 'data' + str(pid) + '.PML'
+    return filename
+
+def new_project(pname):
+    proj = Project(pname)
+    print('Project Created with ID:' + str(proj.get_pid()))
+    save_project(proj)
+
 
 def save_project(obj):
-    with open(filename, 'wb') as output:
+    file = get_filename(obj.get_pid())
+    with open(file, 'wb') as output:
         pickle.dump(obj, output, pickle.HIGHEST_PROTOCOL)
 
-def add_user(username):
+def add_user(username, pid):
+    file = get_filename(pid)
+
     try:
         #Load project data
-        with open(filename, 'rb') as input:
+        with open(file, 'rb') as input:
             proj = pickle.load(input)
             global last_uid
             last_uid = proj.total_users
@@ -170,10 +186,11 @@ def add_user(username):
     except FileNotFoundError:
             print("ERROR: No projects created")
 
-def add_task(task, start_date, end_date):
+def add_task(task, start_date, end_date, pid):
+    file = get_filename(pid)
     try:
         #Load project data
-        with open(filename, 'rb') as input:
+        with open(file, 'rb') as input:
             proj = pickle.load(input)
             global last_tid
             last_tid = proj.total_tasks
@@ -184,10 +201,11 @@ def add_task(task, start_date, end_date):
     except FileNotFoundError:
             print("ERROR: No projects created")
 
-def add_idea(idea):
+def add_idea(idea, pid):
+    file = get_filename(pid)
     try:
         #Load project data
-        with open(filename, 'rb') as input:
+        with open(file, 'rb') as input:
             proj = pickle.load(input)
             proj.new_idea(idea)
             save_project(proj)
@@ -195,10 +213,11 @@ def add_idea(idea):
     except FileNotFoundError:
             print("ERROR: No projects created")
 
-def add_brainstorm(title):
+def add_brainstorm(title, pid):
+    file = get_filename(pid)
     try:
         #Load project data
-        with open(filename, 'rb') as input:
+        with open(file, 'rb') as input:
             proj = pickle.load(input)
             proj.new_brainstorm(title)
             save_project(proj)
@@ -206,10 +225,11 @@ def add_brainstorm(title):
     except FileNotFoundError:
             print("ERROR: No projects created")
 
-def generate_diagram():
+def generate_diagram(pid):
+    file = get_filename(pid)
     try:
         #Load project data
-        with open(filename, 'rb') as input:
+        with open(file, 'rb') as input:
             proj = pickle.load(input)
             proj.generate_brainstorming_diagram()
             #save_project(proj)

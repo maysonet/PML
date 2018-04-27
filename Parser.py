@@ -7,37 +7,37 @@ tokens = Lexer.tokens
 def p_statement(p):
 
     """
-    statement : command NAME ID
-                | command NAME DATE DATE
-                | command NAME
-                | command
+    statement : command PHRASE
+                | command PHRASE DATE DATE NUMBER
+                | command PHRASE NUMBER
+                | command NUMBER
     """
     try:
-        if p[1] == 'NEW':
-            Utils.new_project(p[2], p[3])
+        if p[1] == 'NEW_PROJECT':
+            Utils.new_project(p[2])
             # OR we can just accept project name and let the system assign ID
             # Need to fix input rules so that SPACES are allowed in Project name
-        if p[1] == 'USER':
-            Utils.add_user(p[2])
-        if p[1] == 'TASK':
-            Utils.add_task(p[2], p[3], p[4])
+        if p[1] == 'NEW_MEMBER':
+            Utils.add_user(p[2], p[3])
+        if p[1] == 'ADD_TASK':
+            Utils.add_task(p[2], p[3], p[4], p[5])
             # Need to fix input rules so that SPACES are allowed in task description
 
-        if p[1] == 'BRAINSTORM':
-            Utils.add_brainstorm(p[2])
+        if p[1] == 'CREATE_BRAINSTORM':
+            Utils.add_brainstorm(p[2], p[3])
 
-        if p[1] == 'IDEA':
-            Utils.add_idea(p[2])
+        if p[1] == 'ADD_IDEA':
+            Utils.add_idea(p[2], p[3])
 
-        if p[1] == 'DIAGRAM':
-            Utils.generate_diagram()
+        if p[1] == 'VIEW_BRAINSTORM':
+            Utils.generate_diagram(p[2])
 
         #The following NEED to be IMPLEMENTED in LEXER and UTILS
-        if p[1] == 'GANTT':
+        if p[1] == 'VIEW_GANTT':
             pass
-        if p[1] == 'TODAY':
+        if p[1] == 'LIST_TODAY':
             pass
-        if p[1] == 'WEEK':
+        if p[1] == 'LIST_WEEK':
             pass
 
 
@@ -47,7 +47,7 @@ def p_statement(p):
 
 def p_command(p):
     """
-    command : NAME
+    command : COMMAND
     """
     p[0] = p[1]
 

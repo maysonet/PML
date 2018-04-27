@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'BRAINSTORM DATE DIAGRAM ID IDEA NAME NEW TASK USER\n    statement : command NAME ID\n                | command NAME DATE DATE\n                | command NAME\n                | command\n    \n    command : NAME\n    '
+_lr_signature = 'ADD_IDEA ADD_TASK ASSIGN_TASK COMMAND CREATE_BRAINSTORM CREATE_GRAPH DATE DELETE_IDEA DELETE_MEMBER DELETE_TASK EDIT_TASK GENERATE_PROJECT GRAPH_AXIS GRAPH_DATA GRAPH_TYPE LIST_OVERDUE LIST_TODAY LIST_WEEK NAME NEW_MEMBER NEW_PROJECT NUMBER PHRASE USERNAME VIEW_BRAINSTORM VIEW_SCHEDULE VIEW_TASKS\n    statement : command PHRASE\n                | command PHRASE DATE DATE NUMBER\n                | command PHRASE NUMBER\n                | command NUMBER\n    \n    command : COMMAND\n    '
     
-_lr_action_items = {'NAME':([0,2,3,],[3,4,-5,]),'$end':([1,2,3,4,5,7,],[0,-4,-5,-3,-1,-2,]),'ID':([4,],[5,]),'DATE':([4,6,],[6,7,]),}
+_lr_action_items = {'COMMAND':([0,],[3,]),'$end':([1,4,5,7,9,],[0,-1,-4,-3,-2,]),'PHRASE':([2,3,],[4,-5,]),'NUMBER':([2,3,4,8,],[5,-5,7,9,]),'DATE':([4,6,],[6,8,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -27,9 +27,9 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> statement","S'",1,None,None,None),
-  ('statement -> command NAME ID','statement',3,'p_statement','Parser.py',9),
-  ('statement -> command NAME DATE DATE','statement',4,'p_statement','Parser.py',10),
-  ('statement -> command NAME','statement',2,'p_statement','Parser.py',11),
-  ('statement -> command','statement',1,'p_statement','Parser.py',12),
-  ('command -> NAME','command',1,'p_command','Parser.py',50),
+  ('statement -> command PHRASE','statement',2,'p_statement','Parser.py',9),
+  ('statement -> command PHRASE DATE DATE NUMBER','statement',5,'p_statement','Parser.py',10),
+  ('statement -> command PHRASE NUMBER','statement',3,'p_statement','Parser.py',11),
+  ('statement -> command NUMBER','statement',2,'p_statement','Parser.py',12),
+  ('command -> COMMAND','command',1,'p_command','Parser.py',50),
 ]
