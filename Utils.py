@@ -109,6 +109,12 @@ class Project:
                 return task
         return None
 
+    def _find_user(self, user_id):
+        for user in self.users:
+            if str(user.id) == str(user_id):
+                return user
+        return None
+
     def edit_task(self, task_id, start_date, end_date):
         task = self._find_task(task_id)
         if task:
@@ -143,8 +149,17 @@ class Project:
 
     def edit_user(user_id, user_name):
         pass
-    def remove_user(user_id):
+    def delete_user(self, user_id):
         pass
+        user = self._find_user(user_id)
+        if user is not None:
+            print("User with ID:" + str(user_id) + " was found.")
+            self.users.remove(user)
+            self.total_users -= 1
+            print("User removed...")
+
+        else:
+            print("User with ID:" + str(user_id) + " was not found.")
 
     def show_users(self, users=None):
         if not users:
@@ -178,9 +193,25 @@ def add_user(username, pid):
         with open(file, 'rb') as input:
             proj = pickle.load(input)
             global last_uid
-            last_uid = proj.total_users
+            last_uid = proj.users[-1].id
             #Add User to project
             proj.new_user(username)
+            save_project(proj)
+            proj.show_users()
+    except FileNotFoundError:
+            print("ERROR: No projects created")
+
+def remove_user(uid, pid):
+    file = get_filename(pid)
+
+    try:
+        #Load project data
+        with open(file, 'rb') as input:
+            proj = pickle.load(input)
+            global last_uid
+            last_uid = proj.total_users
+            #Add User to project
+            proj.delete_user(uid)
             save_project(proj)
             proj.show_users()
     except FileNotFoundError:

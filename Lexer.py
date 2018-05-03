@@ -3,7 +3,7 @@ import ply.lex as lex
 # Reserved Words
 reserved = {
     'new_project': 'NEW_PROJECT',
-    'new_member': 'NEW_MEMBER',
+    'add_member': 'ADD_MEMBER',
     'delete_member' : 'DELETE_MEMBER',
     'create_brainstorm':'CREATE_BRAINSTORM',
     'add_idea':'ADD_IDEA',

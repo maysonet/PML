@@ -11,14 +11,19 @@ def p_statement(p):
                 | command PHRASE DATE DATE NUMBER
                 | command PHRASE NUMBER
                 | command NUMBER
+                | command NUMBER NUMBER
     """
     try:
         if p[1] == 'NEW_PROJECT':
             Utils.new_project(p[2])
             # OR we can just accept project name and let the system assign ID
             # Need to fix input rules so that SPACES are allowed in Project name
-        if p[1] == 'NEW_MEMBER':
+        if p[1] == 'ADD_MEMBER':
             Utils.add_user(p[2], p[3])
+
+        if p[1] == 'DELETE_MEMBER':
+            Utils.remove_user(p[2], p[3])
+
         if p[1] == 'ADD_TASK':
             Utils.add_task(p[2], p[3], p[4], p[5])
             # Need to fix input rules so that SPACES are allowed in task description

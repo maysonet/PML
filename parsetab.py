@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ADD_IDEA ADD_TASK ASSIGN_TASK COMMAND CREATE_BRAINSTORM CREATE_GRAPH DATE DELETE_IDEA DELETE_MEMBER DELETE_TASK EDIT_TASK GENERATE_PROJECT GRAPH_AXIS GRAPH_DATA GRAPH_TYPE LIST_OVERDUE LIST_TODAY LIST_WEEK NAME NEW_MEMBER NEW_PROJECT NUMBER PHRASE USERNAME VIEW_BRAINSTORM VIEW_SCHEDULE VIEW_TASKS\n    statement : command PHRASE\n                | command PHRASE DATE DATE NUMBER\n                | command PHRASE NUMBER\n                | command NUMBER\n    \n    command : COMMAND\n    '
+_lr_signature = 'ADD_IDEA ADD_MEMBER ADD_TASK ASSIGN_TASK COMMAND CREATE_BRAINSTORM CREATE_GRAPH DATE DELETE_IDEA DELETE_MEMBER DELETE_TASK EDIT_TASK GENERATE_PROJECT GRAPH_AXIS GRAPH_DATA GRAPH_TYPE LIST_OVERDUE LIST_TODAY LIST_WEEK NAME NEW_PROJECT NUMBER PHRASE USERNAME VIEW_BRAINSTORM VIEW_SCHEDULE VIEW_TASKS\n    statement : command PHRASE\n                | command PHRASE DATE DATE NUMBER\n                | command PHRASE NUMBER\n                | command NUMBER\n                | command NUMBER NUMBER\n    \n    command : COMMAND\n    '
     
-_lr_action_items = {'COMMAND':([0,],[3,]),'$end':([1,4,5,7,9,],[0,-1,-4,-3,-2,]),'PHRASE':([2,3,],[4,-5,]),'NUMBER':([2,3,4,8,],[5,-5,7,9,]),'DATE':([4,6,],[6,8,]),}
+_lr_action_items = {'COMMAND':([0,],[3,]),'$end':([1,4,5,7,8,10,],[0,-1,-4,-3,-5,-2,]),'PHRASE':([2,3,],[4,-6,]),'NUMBER':([2,3,4,5,9,],[5,-6,7,8,10,]),'DATE':([4,6,],[6,9,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -31,5 +31,6 @@ _lr_productions = [
   ('statement -> command PHRASE DATE DATE NUMBER','statement',5,'p_statement','Parser.py',10),
   ('statement -> command PHRASE NUMBER','statement',3,'p_statement','Parser.py',11),
   ('statement -> command NUMBER','statement',2,'p_statement','Parser.py',12),
-  ('command -> COMMAND','command',1,'p_command','Parser.py',50),
+  ('statement -> command NUMBER NUMBER','statement',3,'p_statement','Parser.py',13),
+  ('command -> COMMAND','command',1,'p_command','Parser.py',55),
 ]
