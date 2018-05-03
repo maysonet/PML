@@ -1,6 +1,6 @@
 import Utils
 import pickle
-
+from datetime import datetime
 
 global p
 p = Utils.Project("Test project")
@@ -8,6 +8,17 @@ print(p.get_pid())
 p = Utils.Project("Test project2")
 print(p.get_pid())
 
+
+#Date Format: DD-MM-YYYY   **MUST VALIDATE IN INPUT
+p.new_task("task1", "21-07-2018", "25-08-2018")
+p.new_task("task2", "27-07-2018", "29-09-2018")
+
+p.generate_gantt_chart()
+
+#datetime_object = datetime.strptime('21-07-1994', '%d-%m-%Y')
+#print(datetime_object)
+
+'''
 p.new_user("chris")
 p.new_user("che")
 p.new_user("gre")
@@ -24,7 +35,7 @@ p.new_user("greds")
 p.show_users()
 p.delete_user(5)
 p.show_users()
-
+'''
 '''
 p.new_brainstorm("main topic")
 p.add_idea("idea 1")

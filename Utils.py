@@ -1,7 +1,10 @@
-import datetime
-import graphviz as gv
+from datetime import date
+from datetime import datetime
+import graphviz as gv #For brainstorming diagram
 import functools
 import pickle #For data persistense
+import gantt #For Gantt charts
+from dateutil import rrule
 
 #Global variables
 last_tid = 0
@@ -28,6 +31,16 @@ def add_edges(graph, edges):
             graph.edge(*e)
     return graph
 
+#Utils for Gantt charts
+gantt.define_font_attributes(fill='black',
+                             stroke='black',
+                             stroke_width=0,
+                             font_family="Verdana")
+
+def weeks_between(start_date, end_date):
+    weeks = rrule.rrule(rrule.WEEKLY, dtstart=start_date, until=end_date)
+    return weeks.count()
+
 #Util classes
 class Brainstorm:
     def __init__(self, title):
@@ -39,7 +52,7 @@ class Task:
         self.task = task
         self.start_date = start_date
         self.end_date = end_date
-        self.creation_date = datetime.date.today()
+        self.creation_date = date.today()
         global last_tid
         last_tid += 1
         self.id = last_tid
@@ -97,6 +110,26 @@ class Project:
                     arr2
                 )
             g.render('diagrams/brainstorm', view=True)
+
+    def generate_gantt_chart(self):
+        tasks = self.tasks
+        if tasks is not None:
+            print("Generating diagram...")
+            for t in tasks:
+                print(t.task)
+                print(t.start_date)
+                print(t.end_date)
+
+
+                start_obj = datetime.strptime(t.start_date, '%d-%m-%Y')
+                end_obj = datetime.strptime(t.end_date, '%d-%m-%Y')
+                print(weeks_between(start_obj, end_obj))
+
+
+
+        else:
+            print("No tasks found in current project.")
+
 
     def new_task(self, task, start_date, end_date):
         self.tasks.append(Task(task, start_date, end_date))
