@@ -114,7 +114,9 @@ class Project:
     def generate_gantt_chart(self):
         tasks = self.tasks
         if tasks is not None:
-            print("Generating diagram...")
+            print("Generating diagram for " + self.name)
+            proj = gantt.Project(name=self.name)
+
             for t in tasks:
                 print(t.task)
                 print(t.start_date)
@@ -123,18 +125,32 @@ class Project:
 
                 start_obj = datetime.strptime(t.start_date, '%d-%m-%Y')
                 end_obj = datetime.strptime(t.end_date, '%d-%m-%Y')
-                print(weeks_between(start_obj, end_obj))
+                duration = weeks_between(start_obj, end_obj)
+                print(duration)
 
+                t = gantt.Task(name=t.task,start=start_obj,duration=duration)
+                proj.add_task(t)
 
+            proj.make_svg_for_tasks(filename='gantt/gantt_p' + str(self.id) + '.svg')
 
         else:
             print("No tasks found in current project.")
 
 
     def new_task(self, task, start_date, end_date):
-        self.tasks.append(Task(task, start_date, end_date))
-        self.total_tasks += 1
-        print('Task was added: ' + task + ', ' + start_date + ', ' + end_date)
+        #Validate dates
+
+        try:
+            start_obj = datetime.strptime(start_date, '%d-%m-%Y')
+            end_obj = datetime.strptime(end_date, '%d-%m-%Y')
+
+            self.tasks.append(Task(task, start_date, end_date))
+            self.total_tasks += 1
+            print('Task was added: ' + task + ', ' + start_date + ', ' + end_date)
+
+        except ValueError:
+            print("date not valid")
+
 
     def _find_task(self, task_id):
         for task in self.tasks:
@@ -226,7 +242,8 @@ def add_user(username, pid):
         with open(file, 'rb') as input:
             proj = pickle.load(input)
             global last_uid
-            last_uid = proj.users[-1].id
+            if len(proj.users) > 0:
+                last_uid = proj.users[-1].id
             #Add User to project
             proj.new_user(username)
             save_project(proj)
@@ -261,7 +278,7 @@ def add_task(task, start_date, end_date, pid):
             #Add Task to project
             proj.new_task(task, start_date, end_date)
             save_project(proj)
-            proj.show_tasks()
+            #proj.show_tasks()
     except FileNotFoundError:
             print("ERROR: No projects created")
 

@@ -40,7 +40,8 @@ t_COMMAND = r'[a-zA-Z]+_[a-zA-Z]+'
 ## NEED regular expression to accept characters and spaces - for tasks
 
 #date format: 2012-02-20 -- year-month-day
-t_DATE = r'\d+-\d+-\d+'
+#t_DATE = r'\d+-\d+-\d+'
+t_DATE = r'[0-9]{2}'+r'-'+r'[0-9]{2}'+r'-'+r'[0-9]{4}'
 
 def t_error(t):
     print('Illegal character %s', t.value[0])

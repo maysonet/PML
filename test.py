@@ -3,17 +3,24 @@ import pickle
 from datetime import datetime
 
 global p
-p = Utils.Project("Test project")
-print(p.get_pid())
-p = Utils.Project("Test project2")
-print(p.get_pid())
+p0 = Utils.Project("Test project")
+print(p0.get_pid())
+p1 = Utils.Project("Test project2")
+print(p1.get_pid())
 
 
 #Date Format: DD-MM-YYYY   **MUST VALIDATE IN INPUT
-p.new_task("task1", "21-07-2018", "25-08-2018")
-p.new_task("task2", "27-07-2018", "29-09-2018")
 
-p.generate_gantt_chart()
+p0.new_task("a new task", "21-07-2019", "25-12-2019")
+p0.new_task("testing", "31-12-2018", "29-06-2019")
+
+
+p1.new_task("task1", "21-07-2018", "25-08-2018")
+p1.new_task("task2", "27-39-2018", "29-09-2018")
+
+
+p0.generate_gantt_chart()
+p1.generate_gantt_chart()
 
 #datetime_object = datetime.strptime('21-07-1994', '%d-%m-%Y')
 #print(datetime_object)
