@@ -2,15 +2,16 @@ import ply.lex as lex
 
 # Reserved Words
 reserved = {
-    'new_project': 'NEW_PROJECT',
-    'add_member': 'ADD_MEMBER',
-    'delete_member' : 'DELETE_MEMBER',
-    'create_brainstorm':'CREATE_BRAINSTORM',
-    'add_idea':'ADD_IDEA',
-    'delete_idea':'DELETE_IDEA',
-    'add_task': 'ADD_TASK',
+    'new_project': 'NEW_PROJECT', #Done
+    'add_member': 'ADD_MEMBER', #Done
+    'delete_member' : 'DELETE_MEMBER', #Done
+    'create_brainstorm':'CREATE_BRAINSTORM', #Done
+    'add_idea':'ADD_IDEA', #Done
+    'delete_idea':'DELETE_IDEA', #No esta en la lista
+    'add_task': 'ADD_TASK', #Done
     'edit_task': 'EDIT_TASK',
-    'delete_task': 'DELETE_TASK',
+    'delete_task': 'DELETE_TASK', #Done (Creo)
+    'completed_task': 'COMPLETED_TASK', #Done (Creo)
     'assign_task': 'ASSIGN_TASK',
     'create_graph': 'CREATE_GRAPH',
     'graph_type':'GRAPH_TYPE',
@@ -23,17 +24,21 @@ reserved = {
     'list_week' : 'LIST_WEEK',
     'list_overdue' : 'LIST_OVERDUE',
     'generate_project' : 'GENERATE_PROJECT'
-
 }
 
 # Tokens
-tokens = ["NAME","USERNAME", "DATE", "NUMBER", "PHRASE", "COMMAND"] + list(reserved.values())
+tokens = ["NAME",
+          "USERNAME",
+          "DATE",
+          "NUMBER",
+          "PHRASE",
+          "COMMAND"] \
+         + list(reserved.values())
 
 # Simple Regular Expressions
 t_ignore = ' \t'
 t_USERNAME = r'@[a-zA-Z]+'
 t_NAME = r'[a-zA-Z]+'
-
 t_PHRASE = r'[a-zA-Z ]+'
 t_NUMBER = r'[\d+]+'
 t_COMMAND = r'[a-zA-Z]+_[a-zA-Z]+'
@@ -42,6 +47,11 @@ t_COMMAND = r'[a-zA-Z]+_[a-zA-Z]+'
 #date format: 2012-02-20 -- year-month-day
 #t_DATE = r'\d+-\d+-\d+'
 t_DATE = r'[0-9]{2}'+r'-'+r'[0-9]{2}'+r'-'+r'[0-9]{4}'
+
+# Define a rule so we can track line numbers
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
 
 def t_error(t):
     print('Illegal character %s', t.value[0])
@@ -54,8 +64,8 @@ lexer = lex.lex()
 # Test it out
 data0 = '''new_project project Name'''
 data1 = '''new_member member Name project Name'''
-data1 = '''delete_member @member  project Name'''
-data2 = '''create_brainstorm brainstorn Name '''
+data2 = '''delete_member @member  project Name'''
+data3 = '''create_brainstorm brainstorn Name '''
 #data1 = 2012-02-20 2012-02-26
 
 # Give the lexer some input

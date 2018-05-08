@@ -36,7 +36,6 @@ gantt.define_font_attributes(fill='black',
                              stroke='black',
                              stroke_width=0,
                              font_family="Verdana")
-
 def weeks_between(start_date, end_date):
     weeks = rrule.rrule(rrule.WEEKLY, dtstart=start_date, until=end_date)
     return weeks.count()
@@ -48,7 +47,7 @@ class Brainstorm:
         self.title = title
 
 class Task:
-    def __init__(self, task, start_date, end_date, status='', assigned_to=''):
+    def __init__(self, task, start_date, end_date, status, assigned_to=''):
         self.task = task
         self.start_date = start_date
         self.end_date = end_date
@@ -56,6 +55,7 @@ class Task:
         global last_tid
         last_tid += 1
         self.id = last_tid
+        self.status = status
 
 class User:
     def __init__(self, name):
@@ -143,10 +143,10 @@ class Project:
         try:
             start_obj = datetime.strptime(start_date, '%d-%m-%Y')
             end_obj = datetime.strptime(end_date, '%d-%m-%Y')
-
-            self.tasks.append(Task(task, start_date, end_date))
+            status = 0
+            self.tasks.append(Task(task, start_date, end_date, status))
             self.total_tasks += 1
-            print('Task was added: ' + task + ', ' + start_date + ', ' + end_date)
+            print('Task was added: ' + task + ', ' + start_date + ', ' + end_date + ', ' + status)
 
         except ValueError:
             print("date not valid")
@@ -172,6 +172,7 @@ class Project:
             return True
         return False
 
+
     def show_tasks(self, tasks=None):
         if not tasks:
             tasks = self.tasks
@@ -179,11 +180,13 @@ class Project:
             print("{0}: ({1} -- {2})\n{3}".format(
                 task.id, task.start_date, task.end_date, task.task))
 
-    def delete_task(task_id):
-        pass
-
-    def complete_task(task_id): #change task status to 1 (completed)
-        pass
+    def complete_task(self, task_id): #change task status to 1 (completed)
+        #pass
+        task = self._find_task(task_id)
+        if task:
+            task.status = 1
+            return True
+        return False
 
     def assign_task(task_id, user_id):
         pass
@@ -199,7 +202,7 @@ class Project:
     def edit_user(user_id, user_name):
         pass
     def delete_user(self, user_id):
-        pass
+        #pass
         user = self._find_user(user_id)
         if user is not None:
             print("User with ID:" + str(user_id) + " was found.")
@@ -209,6 +212,18 @@ class Project:
 
         else:
             print("User with ID:" + str(user_id) + " was not found.")
+
+    def delete_task(self, task_id):
+        # En proceso !!!!!!
+        #pass
+        task = self._find_task(task_id)
+        if task is not None:
+            print("Task with ID:" + str(task_id) + " was found.")
+            self.tasks.remove(task)
+            self.total_tasks -= 1
+            print("Task removed...")
+        else:
+            print("Task with ID:" + str(task_id) + " was not found.")
 
     def show_users(self, users=None):
         if not users:
@@ -236,7 +251,6 @@ def save_project(obj):
 
 def add_user(username, pid):
     file = get_filename(pid)
-
     try:
         #Load project data
         with open(file, 'rb') as input:
@@ -281,6 +295,37 @@ def add_task(task, start_date, end_date, pid):
             #proj.show_tasks()
     except FileNotFoundError:
             print("ERROR: No projects created")
+
+def remove_task(taskid, pid):
+    file = get_filename(pid)
+    try:
+        #Load project data
+        with open(file, 'rb') as input:
+            proj = pickle.load(input)
+            global last_taskid
+            last_taskid = proj.total_tasks
+            #Remove task from project
+            proj.delete_task(taskid)
+            save_project(proj)
+            proj.show_tasks()
+    except FileNotFoundError:
+            print("ERROR: No projects created")
+
+def completed_task(taskid, pid):
+    file = get_filename(pid)
+    try:
+        #Load project data
+        with open(file, 'rb') as input:
+            proj = pickle.load(input)
+            global last_taskid
+            last_taskid = proj.total_tasks
+            #Remove task from project
+            proj.complete_task(taskid)
+            save_project(proj)
+            proj.show_tasks()
+    except FileNotFoundError:
+            print("ERROR: No projects created")
+
 
 def add_idea(idea, pid):
     file = get_filename(pid)
