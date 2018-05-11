@@ -184,7 +184,7 @@ class Project:
         #pass
         task = self._find_task(task_id)
         if task:
-            task.status = 1
+            task.status = True
             return True
         return False
 
@@ -304,8 +304,8 @@ def add_task(task, start_date, end_date, pid):
             #last_tid = proj.total_tasks
             #Add Task to project
             proj.new_task(task, start_date, end_date)
-            #save_project(proj)
-            #proj.show_tasks()
+            save_project(proj)
+            proj.show_tasks()
     except FileNotFoundError:
             print("ERROR: No projects created")
 
@@ -342,7 +342,7 @@ def completed_task(taskid, pid):
 def view_tasks(pid):
     file = get_filename(pid)
     try:
-        #Load project data
+
         with open(file, 'rb') as input:
             proj = pickle.load(input)
             proj.show_tasks()
