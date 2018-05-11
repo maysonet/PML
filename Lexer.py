@@ -2,38 +2,44 @@ import ply.lex as lex
 
 # Reserved Words
 reserved = {
-    'new_project': 'NEW_PROJECT',
-    'add_member': 'ADD_MEMBER',
-    'delete_member' : 'DELETE_MEMBER',
-    'create_brainstorm':'CREATE_BRAINSTORM',
-    'add_idea':'ADD_IDEA',
-    'delete_idea':'DELETE_IDEA',
-    'add_task': 'ADD_TASK',
-    'edit_task': 'EDIT_TASK',
-    'delete_task': 'DELETE_TASK',
-    'assign_task': 'ASSIGN_TASK',
-    'create_graph': 'CREATE_GRAPH',
-    'graph_type':'GRAPH_TYPE',
-    'graph_axis':'GRAPH_AXIS',
-    'graph_data' : 'GRAPH_DATA',
-    'view_brainstorm':'VIEW_BRAINSTORM',
-    'view_schedule': 'VIEW_SCHEDULE',
-    'view_tasks' : 'VIEW_TASKS',
-    'list_today' : 'LIST_TODAY',
-    'list_week' : 'LIST_WEEK',
-    'list_overdue' : 'LIST_OVERDUE',
-    'generate_project' : 'GENERATE_PROJECT'
-
+    'new_project': 'NEW_PROJECT', #Done
+    'add_member': 'ADD_MEMBER', #Done
+    'delete_member' : 'DELETE_MEMBER', #Done
+    'view_members' : 'VIEW_MEMBERS', ##Done
+    'create_brainstorm':'CREATE_BRAINSTORM', #Done
+    'add_idea':'ADD_IDEA', #Done
+    'delete_idea':'DELETE_IDEA', #No esta en la lista
+    'add_task': 'ADD_TASK', #Done
+    'edit_task': 'EDIT_TASK', #####Falta
+    'delete_task': 'DELETE_TASK', ##Done (Hay que probarla)
+    'completed_task': 'COMPLETED_TASK', ##Done (Hay que probarla)
+    'assign_task': 'ASSIGN_TASK', #####Falta
+    'create_graph': 'CREATE_GRAPH', ## Mikael
+    'graph_type':'GRAPH_TYPE', # Mikael
+    'graph_axis':'GRAPH_AXIS', # Mikael
+    'graph_data' : 'GRAPH_DATA', # Mikael
+    'view_brainstorm':'VIEW_BRAINSTORM', #No se si sirve
+    'view_schedule': 'VIEW_SCHEDULE', #No se si sirve
+    'view_tasks' : 'VIEW_TASKS', ##Done (Hay que probarla)
+    'list_today' : 'LIST_TODAY', #####Falta
+    'list_week' : 'LIST_WEEK', #####Falta
+    'list_overdue' : 'LIST_OVERDUE', #####Falta
+    'generate_project' : 'GENERATE_PROJECT' #####Falta
 }
 
 # Tokens
-tokens = ["NAME","USERNAME", "DATE", "NUMBER", "PHRASE", "COMMAND"] + list(reserved.values())
+tokens = ["NAME",
+          "USERNAME",
+          "DATE",
+          "NUMBER",
+          "PHRASE",
+          "COMMAND"] \
+         + list(reserved.values())
 
 # Simple Regular Expressions
 t_ignore = ' \t'
 t_USERNAME = r'@[a-zA-Z]+'
 t_NAME = r'[a-zA-Z]+'
-
 t_PHRASE = r'[a-zA-Z ]+'
 t_NUMBER = r'[\d+]+'
 t_COMMAND = r'[a-zA-Z]+_[a-zA-Z]+'
@@ -42,6 +48,11 @@ t_COMMAND = r'[a-zA-Z]+_[a-zA-Z]+'
 #date format: 2012-02-20 -- year-month-day
 #t_DATE = r'\d+-\d+-\d+'
 t_DATE = r'[0-9]{2}'+r'-'+r'[0-9]{2}'+r'-'+r'[0-9]{4}'
+
+# Define a rule so we can track line numbers
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
 
 def t_error(t):
     print('Illegal character %s', t.value[0])

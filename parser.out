@@ -2,29 +2,31 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    ADD_IDEA
+    DELETE_TASK
     ADD_MEMBER
-    ADD_TASK
-    ASSIGN_TASK
+    GRAPH_TYPE
     CREATE_BRAINSTORM
     CREATE_GRAPH
-    DELETE_IDEA
     DELETE_MEMBER
-    DELETE_TASK
-    EDIT_TASK
-    GENERATE_PROJECT
-    GRAPH_AXIS
-    GRAPH_DATA
-    GRAPH_TYPE
+    COMPLETED_TASK
     LIST_OVERDUE
     LIST_TODAY
-    LIST_WEEK
-    NAME
-    NEW_PROJECT
-    USERNAME
-    VIEW_BRAINSTORM
-    VIEW_SCHEDULE
+    ADD_TASK
     VIEW_TASKS
+    ASSIGN_TASK
+    DELETE_IDEA
+    VIEW_BRAINSTORM
+    VIEW_MEMBERS
+    NAME
+    GRAPH_AXIS
+    EDIT_TASK
+    USERNAME
+    GRAPH_DATA
+    GENERATE_PROJECT
+    VIEW_SCHEDULE
+    NEW_PROJECT
+    ADD_IDEA
+    LIST_WEEK
 
 Grammar
 
@@ -43,6 +45,7 @@ ADD_MEMBER           :
 ADD_TASK             : 
 ASSIGN_TASK          : 
 COMMAND              : 6
+COMPLETED_TASK       : 
 CREATE_BRAINSTORM    : 
 CREATE_GRAPH         : 
 DATE                 : 2 2
@@ -63,6 +66,7 @@ NUMBER               : 2 3 4 5 5
 PHRASE               : 1 2 3
 USERNAME             : 
 VIEW_BRAINSTORM      : 
+VIEW_MEMBERS         : 
 VIEW_SCHEDULE        : 
 VIEW_TASKS           : 
 error                : 
@@ -84,18 +88,12 @@ state 0
     (5) statement -> . command NUMBER NUMBER
     (6) command -> . COMMAND
 
-    COMMAND         shift and go to state 3
+    COMMAND         shift and go to state 2
 
-    statement                      shift and go to state 1
-    command                        shift and go to state 2
+    statement                      shift and go to state 3
+    command                        shift and go to state 1
 
 state 1
-
-    (0) S' -> statement .
-
-
-
-state 2
 
     (1) statement -> command . PHRASE
     (2) statement -> command . PHRASE DATE DATE NUMBER
@@ -107,12 +105,18 @@ state 2
     NUMBER          shift and go to state 5
 
 
-state 3
+state 2
 
     (6) command -> COMMAND .
 
     PHRASE          reduce using rule 6 (command -> COMMAND .)
     NUMBER          reduce using rule 6 (command -> COMMAND .)
+
+
+state 3
+
+    (0) S' -> statement .
+
 
 
 state 4
