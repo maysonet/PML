@@ -2,31 +2,31 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    DELETE_TASK
-    ADD_MEMBER
-    GRAPH_TYPE
-    CREATE_BRAINSTORM
-    CREATE_GRAPH
-    DELETE_MEMBER
-    COMPLETED_TASK
-    LIST_OVERDUE
-    LIST_TODAY
-    ADD_TASK
-    VIEW_TASKS
-    ASSIGN_TASK
-    DELETE_IDEA
-    VIEW_BRAINSTORM
-    VIEW_MEMBERS
-    NAME
-    GRAPH_AXIS
-    EDIT_TASK
     USERNAME
-    GRAPH_DATA
-    GENERATE_PROJECT
-    VIEW_SCHEDULE
-    NEW_PROJECT
-    ADD_IDEA
+    COMPLETED_TASK
+    VIEW_MEMBERS
+    GRAPH_AXIS
+    CREATE_BRAINSTORM
+    ADD_MEMBER
+    VIEW_TASKS
+    NAME
     LIST_WEEK
+    GRAPH_DATA
+    GRAPH_TYPE
+    VIEW_BRAINSTORM
+    GENERATE_PROJECT
+    ADD_TASK
+    VIEW_SCHEDULE
+    CREATE_GRAPH
+    DELETE_TASK
+    DELETE_MEMBER
+    LIST_OVERDUE
+    EDIT_TASK
+    NEW_PROJECT
+    LIST_TODAY
+    DELETE_IDEA
+    ADD_IDEA
+    ASSIGN_TASK
 
 Grammar
 
@@ -90,8 +90,8 @@ state 0
 
     COMMAND         shift and go to state 2
 
-    statement                      shift and go to state 3
     command                        shift and go to state 1
+    statement                      shift and go to state 3
 
 state 1
 

@@ -47,7 +47,7 @@ class Brainstorm:
         self.title = title
 
 class Task:
-    def __init__(self, task, start_date, end_date, status, assigned_to=''):
+    def __init__(self, task, start_date, end_date, status='', assigned_to=''):
         self.task = task
         self.start_date = start_date
         self.end_date = end_date
@@ -55,7 +55,7 @@ class Task:
         global last_tid
         last_tid += 1
         self.id = last_tid
-        self.status = status
+        self.status = False
 
 class User:
     def __init__(self, name):
@@ -139,15 +139,15 @@ class Project:
 
     def new_task(self, task, start_date, end_date):
         #Validate dates
-
+        print('estoy en new_task')
         try:
+            print('estoy dentro del try')
             start_obj = datetime.strptime(start_date, '%d-%m-%Y')
             end_obj = datetime.strptime(end_date, '%d-%m-%Y')
-            status = 0
-            self.tasks.append(Task(task, start_date, end_date, status))
-            self.total_tasks += 1
-            print('Task was added: ' + task + ', ' + start_date + ', ' + end_date + ', ' + status)
-
+            #status = False
+            self.tasks.append(Task(task, start_date, end_date))
+            #self.total_tasks += 1
+            print('Task was added: ' + task + ', ' + start_date + ', ' + end_date)
         except ValueError:
             print("date not valid")
 
@@ -299,10 +299,12 @@ def add_task(task, start_date, end_date, pid):
         with open(file, 'rb') as input:
             proj = pickle.load(input)
             global last_tid
-            last_tid = proj.total_tasks
+            if len(proj.tasks) > 0:
+                last_tid = proj.tasks[-1].id
+            #last_tid = proj.total_tasks
             #Add Task to project
             proj.new_task(task, start_date, end_date)
-            save_project(proj)
+            #save_project(proj)
             #proj.show_tasks()
     except FileNotFoundError:
             print("ERROR: No projects created")

@@ -29,6 +29,10 @@ def p_statement(p):
 
         # Add_task <<task_name>> <<start_date>> <<finish_date>> <<project_id>>
         if p[1] == 'ADD_TASK':
+            print('p[2] : ', p[2])
+            print('p[3] : ', p[3])
+            print('p[4] : ', p[4])
+            print('p[5] : ', p[5])
             Utils.add_task(p[2], p[3], p[4], p[5])
             # Need to fix input rules so that SPACES are allowed in task description
 
@@ -61,7 +65,6 @@ def p_statement(p):
             pass
         if p[1] == 'LIST_WEEK':
             pass
-
 
     except:
         print('Invalid Parameters')
