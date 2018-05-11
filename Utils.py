@@ -274,7 +274,8 @@ def add_task(task, start_date, end_date, pid):
         with open(file, 'rb') as input:
             proj = pickle.load(input)
             global last_tid
-            last_tid = proj.total_tasks
+            if len(proj.tasks) > 0:
+                last_tid = proj.tasks[-1].id
             #Add Task to project
             proj.new_task(task, start_date, end_date)
             save_project(proj)

@@ -54,8 +54,8 @@ lexer = lex.lex()
 # Test it out
 data0 = '''new_project project Name'''
 data1 = '''new_member member Name project Name'''
-data1 = '''delete_member @member  project Name'''
-data2 = '''create_brainstorm brainstorn Name '''
+data2 = '''delete_member @member  project Name'''
+data3 = '''create_brainstorm brainstorn Name '''
 #data1 = 2012-02-20 2012-02-26
 
 # Give the lexer some input
