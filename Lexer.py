@@ -5,25 +5,26 @@ reserved = {
     'new_project': 'NEW_PROJECT', #Done
     'add_member': 'ADD_MEMBER', #Done
     'delete_member' : 'DELETE_MEMBER', #Done
+    'view_members' : 'VIEW_MEMBERS', ##Done
     'create_brainstorm':'CREATE_BRAINSTORM', #Done
     'add_idea':'ADD_IDEA', #Done
     'delete_idea':'DELETE_IDEA', #No esta en la lista
     'add_task': 'ADD_TASK', #Done
-    'edit_task': 'EDIT_TASK',
-    'delete_task': 'DELETE_TASK', #Done (Creo)
-    'completed_task': 'COMPLETED_TASK', #Done (Creo)
-    'assign_task': 'ASSIGN_TASK',
-    'create_graph': 'CREATE_GRAPH',
-    'graph_type':'GRAPH_TYPE',
-    'graph_axis':'GRAPH_AXIS',
-    'graph_data' : 'GRAPH_DATA',
-    'view_brainstorm':'VIEW_BRAINSTORM',
-    'view_schedule': 'VIEW_SCHEDULE',
-    'view_tasks' : 'VIEW_TASKS',
-    'list_today' : 'LIST_TODAY',
-    'list_week' : 'LIST_WEEK',
-    'list_overdue' : 'LIST_OVERDUE',
-    'generate_project' : 'GENERATE_PROJECT'
+    'edit_task': 'EDIT_TASK', #####Falta
+    'delete_task': 'DELETE_TASK', ##Done (Hay que probarla)
+    'completed_task': 'COMPLETED_TASK', ##Done (Hay que probarla)
+    'assign_task': 'ASSIGN_TASK', #####Falta
+    'create_graph': 'CREATE_GRAPH', ## Mikael
+    'graph_type':'GRAPH_TYPE', # Mikael
+    'graph_axis':'GRAPH_AXIS', # Mikael
+    'graph_data' : 'GRAPH_DATA', # Mikael
+    'view_brainstorm':'VIEW_BRAINSTORM', #No se si sirve
+    'view_schedule': 'VIEW_SCHEDULE', #No se si sirve
+    'view_tasks' : 'VIEW_TASKS', ##Done (Hay que probarla)
+    'list_today' : 'LIST_TODAY', #####Falta
+    'list_week' : 'LIST_WEEK', #####Falta
+    'list_overdue' : 'LIST_OVERDUE', #####Falta
+    'generate_project' : 'GENERATE_PROJECT' #####Falta
 }
 
 # Tokens

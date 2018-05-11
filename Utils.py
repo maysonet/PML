@@ -32,10 +32,10 @@ def add_edges(graph, edges):
     return graph
 
 #Utils for Gantt charts
-gantt.define_font_attributes(fill='black',
-                             stroke='black',
-                             stroke_width=0,
-                             font_family="Verdana")
+#gantt.define_font_attributes(fill='black',
+#                             stroke='black',
+#                             stroke_width=0,
+#                             font_family="Verdana")
 def weeks_between(start_date, end_date):
     weeks = rrule.rrule(rrule.WEEKLY, dtstart=start_date, until=end_date)
     return weeks.count()
@@ -281,7 +281,18 @@ def remove_user(uid, pid):
     except FileNotFoundError:
             print("ERROR: No projects created")
 
+def view_members(pid):
+    file = get_filename(pid)
+    try:
+        #Load project data
+        with open(file, 'rb') as input:
+            proj = pickle.load(input)
+            proj.show_users()
+    except FileNotFoundError:
+            print("ERROR: No projects created")
+
 def add_task(task, start_date, end_date, pid):
+    print('pid : ', pid)
     file = get_filename(pid)
     try:
         #Load project data
@@ -326,6 +337,15 @@ def completed_task(taskid, pid):
     except FileNotFoundError:
             print("ERROR: No projects created")
 
+def view_tasks(pid):
+    file = get_filename(pid)
+    try:
+        #Load project data
+        with open(file, 'rb') as input:
+            proj = pickle.load(input)
+            proj.show_tasks()
+    except FileNotFoundError:
+            print("ERROR: No projects created")
 
 def add_idea(idea, pid):
     file = get_filename(pid)

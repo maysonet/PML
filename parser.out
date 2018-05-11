@@ -2,30 +2,31 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    DELETE_MEMBER
-    GRAPH_AXIS
-    GRAPH_DATA
-    LIST_OVERDUE
-    LIST_WEEK
-    CREATE_BRAINSTORM
-    ADD_TASK
-    ADD_MEMBER
-    COMPLETED_TASK
-    VIEW_BRAINSTORM
-    GENERATE_PROJECT
-    ADD_IDEA
-    USERNAME
-    ASSIGN_TASK
-    GRAPH_TYPE
-    DELETE_IDEA
-    NEW_PROJECT
-    CREATE_GRAPH
-    VIEW_TASKS
-    LIST_TODAY
-    VIEW_SCHEDULE
-    NAME
-    EDIT_TASK
     DELETE_TASK
+    ADD_MEMBER
+    GRAPH_TYPE
+    CREATE_BRAINSTORM
+    CREATE_GRAPH
+    DELETE_MEMBER
+    COMPLETED_TASK
+    LIST_OVERDUE
+    LIST_TODAY
+    ADD_TASK
+    VIEW_TASKS
+    ASSIGN_TASK
+    DELETE_IDEA
+    VIEW_BRAINSTORM
+    VIEW_MEMBERS
+    NAME
+    GRAPH_AXIS
+    EDIT_TASK
+    USERNAME
+    GRAPH_DATA
+    GENERATE_PROJECT
+    VIEW_SCHEDULE
+    NEW_PROJECT
+    ADD_IDEA
+    LIST_WEEK
 
 Grammar
 
@@ -65,6 +66,7 @@ NUMBER               : 2 3 4 5 5
 PHRASE               : 1 2 3
 USERNAME             : 
 VIEW_BRAINSTORM      : 
+VIEW_MEMBERS         : 
 VIEW_SCHEDULE        : 
 VIEW_TASKS           : 
 error                : 
@@ -86,26 +88,12 @@ state 0
     (5) statement -> . command NUMBER NUMBER
     (6) command -> . COMMAND
 
-    COMMAND         shift and go to state 1
+    COMMAND         shift and go to state 2
 
-    statement                      shift and go to state 2
-    command                        shift and go to state 3
+    statement                      shift and go to state 3
+    command                        shift and go to state 1
 
 state 1
-
-    (6) command -> COMMAND .
-
-    PHRASE          reduce using rule 6 (command -> COMMAND .)
-    NUMBER          reduce using rule 6 (command -> COMMAND .)
-
-
-state 2
-
-    (0) S' -> statement .
-
-
-
-state 3
 
     (1) statement -> command . PHRASE
     (2) statement -> command . PHRASE DATE DATE NUMBER
@@ -113,35 +101,49 @@ state 3
     (4) statement -> command . NUMBER
     (5) statement -> command . NUMBER NUMBER
 
-    PHRASE          shift and go to state 5
-    NUMBER          shift and go to state 4
+    PHRASE          shift and go to state 4
+    NUMBER          shift and go to state 5
+
+
+state 2
+
+    (6) command -> COMMAND .
+
+    PHRASE          reduce using rule 6 (command -> COMMAND .)
+    NUMBER          reduce using rule 6 (command -> COMMAND .)
+
+
+state 3
+
+    (0) S' -> statement .
+
 
 
 state 4
-
-    (4) statement -> command NUMBER .
-    (5) statement -> command NUMBER . NUMBER
-
-    $end            reduce using rule 4 (statement -> command NUMBER .)
-    NUMBER          shift and go to state 6
-
-
-state 5
 
     (1) statement -> command PHRASE .
     (2) statement -> command PHRASE . DATE DATE NUMBER
     (3) statement -> command PHRASE . NUMBER
 
     $end            reduce using rule 1 (statement -> command PHRASE .)
-    DATE            shift and go to state 8
+    DATE            shift and go to state 6
     NUMBER          shift and go to state 7
+
+
+state 5
+
+    (4) statement -> command NUMBER .
+    (5) statement -> command NUMBER . NUMBER
+
+    $end            reduce using rule 4 (statement -> command NUMBER .)
+    NUMBER          shift and go to state 8
 
 
 state 6
 
-    (5) statement -> command NUMBER NUMBER .
+    (2) statement -> command PHRASE DATE . DATE NUMBER
 
-    $end            reduce using rule 5 (statement -> command NUMBER NUMBER .)
+    DATE            shift and go to state 9
 
 
 state 7
@@ -153,9 +155,9 @@ state 7
 
 state 8
 
-    (2) statement -> command PHRASE DATE . DATE NUMBER
+    (5) statement -> command NUMBER NUMBER .
 
-    DATE            shift and go to state 9
+    $end            reduce using rule 5 (statement -> command NUMBER NUMBER .)
 
 
 state 9
