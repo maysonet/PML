@@ -128,7 +128,7 @@ class Project:
                 days = (end-start).days
                 print("days between: " + str(days))
 
-                t = gantt.Task(name=t.task,start=start,duration=days)
+                t = gantt.Task(name=t.task,start=start,duration=days, percent_done=100)
                 proj.add_task(t)
 
             proj.make_svg_for_tasks(filename='gantt/gantt_p' + str(self.id) + '.svg')
