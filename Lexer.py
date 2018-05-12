@@ -18,7 +18,7 @@ reserved = {
     'graph_type':'GRAPH_TYPE', # Mikael
     'graph_axis':'GRAPH_AXIS', # Mikael
     'graph_data' : 'GRAPH_DATA', # Mikael
-    'view_brainstorm':'VIEW_BRAINSTORM', #No se si sirve
+    'view_brainstorm':'VIEW_BRAINSTORM', #Done
     'view_schedule': 'VIEW_SCHEDULE', #No se si sirve
     'view_tasks' : 'VIEW_TASKS', ##Done
     'list_today' : 'LIST_TODAY', #####Falta

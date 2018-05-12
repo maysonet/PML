@@ -55,8 +55,8 @@ def p_statement(p):
             Utils.generate_diagram(p[2])
 
         #The following NEED to be IMPLEMENTED in LEXER and UTILS
-        if p[1] == 'VIEW_GANTT':
-            pass
+        if p[1] == 'VIEW_SCHEDULE':
+            Utils.generate_gantt(p[2])
         if p[1] == 'LIST_TODAY':
             pass
         if p[1] == 'LIST_WEEK':

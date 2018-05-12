@@ -1,0 +1,7 @@
+digraph {
+	"main topic "
+	"idea "
+	"geo "
+	"main topic " -> "idea "
+	"main topic " -> "geo "
+}

@@ -32,10 +32,11 @@ def add_edges(graph, edges):
     return graph
 
 #Utils for Gantt charts
-#gantt.define_font_attributes(fill='black',
-#                             stroke='black',
-#                             stroke_width=0,
-#                             font_family="Verdana")
+gantt.define_font_attributes(fill='black',
+                             stroke='black',
+                             stroke_width=0,
+                             font_family="Verdana")
+
 def weeks_between(start_date, end_date):
     weeks = rrule.rrule(rrule.WEEKLY, dtstart=start_date, until=end_date)
     return weeks.count()
@@ -120,14 +121,14 @@ class Project:
                 print(t.task)
                 print(t.start_date)
                 print(t.end_date)
+                start = datetime.strptime(t.start_date, '%d-%m-%Y')
+                end = datetime.strptime(t.end_date, '%d-%m-%Y')
+                #duration = weeks_between(start, end)
+                #print(duration)
+                days = (end-start).days
+                print("days between: " + str(days))
 
-
-                start_obj = datetime.strptime(t.start_date, '%d-%m-%Y')
-                end_obj = datetime.strptime(t.end_date, '%d-%m-%Y')
-                duration = weeks_between(start_obj, end_obj)
-                print(duration)
-
-                t = gantt.Task(name=t.task,start=start_obj,duration=duration)
+                t = gantt.Task(name=t.task,start=start,duration=days)
                 proj.add_task(t)
 
             proj.make_svg_for_tasks(filename='gantt/gantt_p' + str(self.id) + '.svg')
@@ -396,6 +397,17 @@ def generate_diagram(pid):
     except FileNotFoundError:
             print("ERROR: No projects created")
 
+def generate_gantt(pid):
+    file = get_filename(pid)
+    try:
+        #Load project data
+        with open(file, 'rb') as input:
+            proj = pickle.load(input)
+            proj.generate_gantt_chart()
+            #save_project(proj)
+
+    except FileNotFoundError:
+            print("ERROR: No projects created")
 
 
 '''
