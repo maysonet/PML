@@ -11,8 +11,8 @@ reserved = {
     'delete_idea':'DELETE_IDEA', #No esta en la lista
     'add_task': 'ADD_TASK', #Done
     'edit_task': 'EDIT_TASK', #####Falta
-    'delete_task': 'DELETE_TASK', ##Done (Hay que probarla)
-    'completed_task': 'COMPLETED_TASK', ##Done (Hay que probarla)
+    'delete_task': 'DELETE_TASK', ##Done
+    'completed_task': 'COMPLETED_TASK', ##Done
     'assign_task': 'ASSIGN_TASK', #####Falta
     'create_graph': 'CREATE_GRAPH', ## Mikael
     'graph_type':'GRAPH_TYPE', # Mikael
@@ -20,7 +20,7 @@ reserved = {
     'graph_data' : 'GRAPH_DATA', # Mikael
     'view_brainstorm':'VIEW_BRAINSTORM', #No se si sirve
     'view_schedule': 'VIEW_SCHEDULE', #No se si sirve
-    'view_tasks' : 'VIEW_TASKS', ##Done (Hay que probarla)
+    'view_tasks' : 'VIEW_TASKS', ##Done
     'list_today' : 'LIST_TODAY', #####Falta
     'list_week' : 'LIST_WEEK', #####Falta
     'list_overdue' : 'LIST_OVERDUE', #####Falta
