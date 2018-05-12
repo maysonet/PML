@@ -3,8 +3,8 @@ from datetime import datetime
 import graphviz as gv #For brainstorming diagram
 import functools
 import pickle #For data persistense
-import gantt #For Gantt charts
-from dateutil import rrule
+from plotly.offline import plot
+import plotly.figure_factory as ff #For Gantt charts
 
 #Global variables
 last_tid = 0
@@ -31,15 +31,8 @@ def add_edges(graph, edges):
             graph.edge(*e)
     return graph
 
-#Utils for Gantt charts
-gantt.define_font_attributes(fill='black',
-                             stroke='black',
-                             stroke_width=0,
-                             font_family="Verdana")
 
-def weeks_between(start_date, end_date):
-    weeks = rrule.rrule(rrule.WEEKLY, dtstart=start_date, until=end_date)
-    return weeks.count()
+
 
 #Util classes
 class Brainstorm:
@@ -114,24 +107,21 @@ class Project:
     def generate_gantt_chart(self):
         tasks = self.tasks
         if tasks is not None:
-            print("Generating diagram for " + self.name)
-            proj = gantt.Project(name=self.name)
-
+            dff = []
             for t in tasks:
-                print(t.task)
-                print(t.start_date)
-                print(t.end_date)
-                start = datetime.strptime(t.start_date, '%d-%m-%Y')
-                end = datetime.strptime(t.end_date, '%d-%m-%Y')
-                #duration = weeks_between(start, end)
-                #print(duration)
-                days = (end-start).days
-                print("days between: " + str(days))
+                start = datetime.strptime(t.start_date, '%d-%m-%Y').strftime("%Y-%m-%d")
+                end = datetime.strptime(t.end_date, '%d-%m-%Y').strftime("%Y-%m-%d")
+                status = 'Complete' if t.status else 'Incomplete'
+                entry = dict(Task=t.task, Start=start, Finish=end, Resource=status)
+                dff.append(entry)
 
-                t = gantt.Task(name=t.task,start=start,duration=days, percent_done=100)
-                proj.add_task(t)
+            print(dff)
 
-            proj.make_svg_for_tasks(filename='gantt/gantt_p' + str(self.id) + '.svg')
+            colors = { 'Incomplete': 'rgb(220, 0, 0)',
+                      'Complete': 'rgb(0, 255, 100)'}
+
+            fig = ff.create_gantt(dff, colors=colors, index_col='Resource', show_colorbar=True, group_tasks=True)
+            plot(fig, filename='gantt/gantt_p' + str(self.id))
 
         else:
             print("No tasks found in current project.")
