@@ -184,6 +184,24 @@ class Project:
             print("{0}: {3} [start: {1}, due: {2}] [{4}] [Member id: {5}]\n".format(
                 task.id, task.start_date, task.end_date, task.task, task.status, task.assigned_to))
 
+    def show_today(self, tasks=None):
+        if not tasks:
+            tasks = self.tasks
+            today_tasks = [];
+        for task in tasks:
+            end = datetime.strptime(task.end_date, '%d-%m-%Y')
+            if end.date() == datetime.today().date():
+                today_tasks.append(task)
+
+        if len(today_tasks) > 0:
+            for task in today_tasks:
+                print("Showing tasks for today... \n")
+                print("{0}: {3} [start: {1}, due: {2}] [{4}] [Member id: {5}]\n".format(
+                task.id, task.start_date, task.end_date, task.task, task.status, task.assigned_to))
+        else:
+            print("No tasks are due today.\n")
+
+
     def complete_task(self, task_id): #change task status to 1 (completed)
         #pass
         task = self._find_task(task_id)
