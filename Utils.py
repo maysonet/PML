@@ -340,7 +340,7 @@ def add_user(username, pid):
             save_project(proj)
             proj.show_users()
     except FileNotFoundError:
-            print("ERROR: No projects created")
+            print("ERROR: No projects created with pid="+str(pid))
 
 def remove_user(uid, pid):
     file = get_filename(pid)
@@ -358,7 +358,7 @@ def remove_user(uid, pid):
             save_project(proj)
             proj.show_users()
     except FileNotFoundError:
-            print("ERROR: No projects created")
+            print("ERROR: No projects created with pid="+str(pid))
 
 def view_members(pid):
     file = get_filename(pid)
@@ -368,7 +368,7 @@ def view_members(pid):
             proj = pickle.load(input)
             proj.show_users()
     except FileNotFoundError:
-            print("ERROR: No projects created")
+            print("ERROR: No projects created with pid="+str(pid))
 
 def add_task(task, start_date, end_date, pid):
     print('pid : ', pid)
@@ -386,7 +386,7 @@ def add_task(task, start_date, end_date, pid):
             save_project(proj)
             proj.show_tasks()
     except FileNotFoundError:
-            print("ERROR: No projects created")
+            print("ERROR: No projects created with pid="+str(pid))
 
 def remove_task(taskid, pid):
     file = get_filename(pid)
@@ -402,7 +402,7 @@ def remove_task(taskid, pid):
             save_project(proj)
             proj.show_tasks()
     except FileNotFoundError:
-            print("ERROR: No projects created")
+            print("ERROR: No projects created with pid="+str(pid))
 
 def completed_task(taskid, pid):
     file = get_filename(pid)
@@ -418,7 +418,7 @@ def completed_task(taskid, pid):
             save_project(proj)
             proj.show_tasks()
     except FileNotFoundError:
-            print("ERROR: No projects created")
+            print("ERROR: No projects created with pid="+str(pid))
 
 def view_tasks(pid):
     file = get_filename(pid)
@@ -427,7 +427,7 @@ def view_tasks(pid):
             proj = pickle.load(input)
             proj.show_tasks()
     except FileNotFoundError:
-            print("ERROR: No projects created")
+            print("ERROR: No projects created with pid="+str(pid))
 
 def view_today(pid):
     file = get_filename(pid)
@@ -436,7 +436,7 @@ def view_today(pid):
             proj = pickle.load(input)
             proj.show_today()
     except FileNotFoundError:
-            print("ERROR: No projects created")
+            print("ERROR: No projects created with pid="+str(pid))
 
 def view_week(pid):
     file = get_filename(pid)
@@ -445,7 +445,7 @@ def view_week(pid):
             proj = pickle.load(input)
             proj.show_week()
     except FileNotFoundError:
-            print("ERROR: No projects created")
+            print("ERROR: No projects created with pid="+str(pid))
 
 def view_overdue(pid):
     file = get_filename(pid)
@@ -454,7 +454,7 @@ def view_overdue(pid):
             proj = pickle.load(input)
             proj.show_overdue()
     except FileNotFoundError:
-            print("ERROR: No projects created")
+            print("ERROR: No projects created with pid="+str(pid))
 
 def add_idea(idea, pid):
     file = get_filename(pid)
@@ -466,7 +466,7 @@ def add_idea(idea, pid):
             save_project(proj)
 
     except FileNotFoundError:
-            print("ERROR: No projects created")
+            print("ERROR: No projects created with pid="+str(pid))
 
 def add_brainstorm(title, pid):
     file = get_filename(pid)
@@ -478,7 +478,7 @@ def add_brainstorm(title, pid):
             save_project(proj)
 
     except FileNotFoundError:
-            print("ERROR: No projects created")
+            print("ERROR: No projects created with pid="+str(pid))
 
 def generate_diagram(pid):
     file = get_filename(pid)
@@ -490,7 +490,7 @@ def generate_diagram(pid):
             #save_project(proj)
 
     except FileNotFoundError:
-            print("ERROR: No projects created")
+            print("ERROR: No projects created with pid="+str(pid))
 
 def generate_gantt(pid):
     file = get_filename(pid)
@@ -502,7 +502,7 @@ def generate_gantt(pid):
             #save_project(proj)
 
     except FileNotFoundError:
-            print("ERROR: No projects created")
+            print("ERROR: No projects created with pid="+str(pid))
 
 def edit_task(taskid, start_date, end_date, pid):
     print ('primer edit')
@@ -519,7 +519,7 @@ def edit_task(taskid, start_date, end_date, pid):
             save_project(proj)
             proj.show_tasks()
     except FileNotFoundError:
-            print("ERROR: No projects created")
+            print("ERROR: No projects created with pid="+str(pid))
 
 def assign_task(taskid, memberid, pid):
     print ('primer edit')
@@ -536,7 +536,7 @@ def assign_task(taskid, memberid, pid):
             save_project(proj)
             proj.show_tasks()
     except FileNotFoundError:
-            print("ERROR: No projects created")
+            print("ERROR: No projects created with pid="+str(pid))
 
 '''
 #Generic Code to LOAD existing project
