@@ -201,6 +201,28 @@ class Project:
         else:
             print("No tasks are due today.\n")
 
+    def show_week(self, tasks=None):
+        if not tasks:
+            tasks = self.tasks
+            week_tasks = [];
+            current_week = datetime.today().isocalendar()
+        for task in tasks:
+            end = datetime.strptime(task.end_date, '%d-%m-%Y').isocalendar()
+            if end[0] == current_week[0] and end[1] == current_week[1]:
+                week_tasks.append(task)
+
+        if len(week_tasks) > 0:
+            for task in week_tasks:
+                print("Showing tasks for this week... \n")
+                print("{0}: {3} [start: {1}, due: {2}] [{4}] [Member id: {5}]\n".format(
+                task.id, task.start_date, task.end_date, task.task, task.status, task.assigned_to))
+        else:
+            print("No tasks are due for this week.\n")
+
+            #print(end_week)
+
+
+
 
     def complete_task(self, task_id): #change task status to 1 (completed)
         #pass
@@ -388,6 +410,15 @@ def view_tasks(pid):
         with open(file, 'rb') as input:
             proj = pickle.load(input)
             proj.show_tasks()
+    except FileNotFoundError:
+            print("ERROR: No projects created")
+
+def view_today(pid):
+    file = get_filename(pid)
+    try:
+        with open(file, 'rb') as input:
+            proj = pickle.load(input)
+            proj.show_today()
     except FileNotFoundError:
             print("ERROR: No projects created")
 
