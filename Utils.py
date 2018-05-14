@@ -171,7 +171,11 @@ class Project:
         print('estoy en el edit')
         task = self._find_task(task_id)
         if task is not None:
-            task.assigned_to = member_id
+            member = self._find_user(member_id)
+            if member is not None:
+                task.assigned_to = member_id
+            else:
+                print("Member with ID:" + str(member_id) + " was not found.")
             #return True
         else:
             print("Task with ID:" + str(task_id) + " was not found.")
