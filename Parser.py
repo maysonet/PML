@@ -29,19 +29,15 @@ def p_statement(p):
 
         # Add_task <<task_name>> <<start_date>> <<finish_date>> <<project_id>>
         if p[1] == 'ADD_TASK':
-            print('p[2] : ', p[2])
-            print('p[3] : ', p[3])
-            print('p[4] : ', p[4])
-            print('p[5] : ', p[5])
             Utils.add_task(p[2], p[3], p[4], p[5])
             # Need to fix input rules so that SPACES are allowed in task description
 
-        # Delete_task << task_name >> <<project_id>>
+        # Delete_task << task_id >> <<project_id>>
         if p[1] == 'DELETE_TASK':
             #Hay que hacerle test
             Utils.remove_task(p[2], p[3])
 
-        # Completed_task <<task_name>> <<project_id>>
+        # Completed_task <<task_id>> <<project_id>>
         if p[1] == 'COMPLETED_TASK':
             Utils.completed_task(p[2], p[3])
 
@@ -59,8 +55,8 @@ def p_statement(p):
             Utils.generate_diagram(p[2])
 
         #The following NEED to be IMPLEMENTED in LEXER and UTILS
-        if p[1] == 'VIEW_GANTT':
-            pass
+        if p[1] == 'VIEW_SCHEDULE':
+            Utils.generate_gantt(p[2])
         if p[1] == 'LIST_TODAY':
             pass
         if p[1] == 'LIST_WEEK':

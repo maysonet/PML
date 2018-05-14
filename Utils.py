@@ -3,8 +3,8 @@ from datetime import datetime
 import graphviz as gv #For brainstorming diagram
 import functools
 import pickle #For data persistense
-import gantt #For Gantt charts
-from dateutil import rrule
+from plotly.offline import plot
+import plotly.figure_factory as ff #For Gantt charts
 
 #Global variables
 last_tid = 0
@@ -31,14 +31,8 @@ def add_edges(graph, edges):
             graph.edge(*e)
     return graph
 
-#Utils for Gantt charts
-#gantt.define_font_attributes(fill='black',
-#                             stroke='black',
-#                             stroke_width=0,
-#                             font_family="Verdana")
-def weeks_between(start_date, end_date):
-    weeks = rrule.rrule(rrule.WEEKLY, dtstart=start_date, until=end_date)
-    return weeks.count()
+
+
 
 #Util classes
 class Brainstorm:
@@ -73,9 +67,8 @@ class Project:
         self.tasks = []
         self.users = []
         self.bs = None
-        self.total_users = 0
-        self.total_tasks = 0
-
+        #self.total_users = 0
+        #self.total_tasks = 0
 
     def get_pid(self):
         return self.id
@@ -114,24 +107,21 @@ class Project:
     def generate_gantt_chart(self):
         tasks = self.tasks
         if tasks is not None:
-            print("Generating diagram for " + self.name)
-            proj = gantt.Project(name=self.name)
-
+            dff = []
             for t in tasks:
-                print(t.task)
-                print(t.start_date)
-                print(t.end_date)
+                start = datetime.strptime(t.start_date, '%d-%m-%Y').strftime("%Y-%m-%d")
+                end = datetime.strptime(t.end_date, '%d-%m-%Y').strftime("%Y-%m-%d")
+                status = 'Complete' if t.status else 'Incomplete'
+                entry = dict(Task=t.task, Start=start, Finish=end, Resource=status)
+                dff.append(entry)
 
+            print(dff)
 
-                start_obj = datetime.strptime(t.start_date, '%d-%m-%Y')
-                end_obj = datetime.strptime(t.end_date, '%d-%m-%Y')
-                duration = weeks_between(start_obj, end_obj)
-                print(duration)
+            colors = { 'Incomplete': 'rgb(220, 0, 0)',
+                      'Complete': 'rgb(0, 255, 100)'}
 
-                t = gantt.Task(name=t.task,start=start_obj,duration=duration)
-                proj.add_task(t)
-
-            proj.make_svg_for_tasks(filename='gantt/gantt_p' + str(self.id) + '.svg')
+            fig = ff.create_gantt(dff, colors=colors, index_col='Resource', show_colorbar=True, group_tasks=True)
+            plot(fig, filename='gantt/gantt_p' + str(self.id))
 
         else:
             print("No tasks found in current project.")
@@ -139,15 +129,15 @@ class Project:
 
     def new_task(self, task, start_date, end_date):
         #Validate dates
-        print('estoy en new_task')
+        #print('estoy en new_task')
         try:
-            print('estoy dentro del try')
+            #print('estoy dentro del try')
             start_obj = datetime.strptime(start_date, '%d-%m-%Y')
             end_obj = datetime.strptime(end_date, '%d-%m-%Y')
             #status = False
             self.tasks.append(Task(task, start_date, end_date))
             #self.total_tasks += 1
-            print('Task was added: ' + task + ', ' + start_date + ', ' + end_date)
+            #print('Task was added: ' + task + ', ' + start_date + ', ' + end_date)
         except ValueError:
             print("date not valid")
 
@@ -177,16 +167,19 @@ class Project:
         if not tasks:
             tasks = self.tasks
         for task in tasks:
-            print("{0}: ({1} -- {2})\n{3}".format(
-                task.id, task.start_date, task.end_date, task.task))
+            print("{0}: {3} [start: {1}, due: {2}] [{4}]\n".format(
+                task.id, task.start_date, task.end_date, task.task, task.status))
 
     def complete_task(self, task_id): #change task status to 1 (completed)
         #pass
         task = self._find_task(task_id)
-        if task:
+        if task is not None:
             task.status = True
-            return True
-        return False
+            print("Task with ID:" + str(task_id) + " marked as Completed.")
+            #return True
+        #return False
+        else:
+            print("Task with ID:" + str(task_id) + " was not found.")
 
     def assign_task(task_id, user_id):
         pass
@@ -196,7 +189,7 @@ class Project:
 
     def new_user(self, name):
         self.users.append(User(name))
-        self.total_users += 1
+        #self.total_users += 1
         print('User was added: ' + name)
 
     def edit_user(user_id, user_name):
@@ -207,7 +200,7 @@ class Project:
         if user is not None:
             print("User with ID:" + str(user_id) + " was found.")
             self.users.remove(user)
-            self.total_users -= 1
+            #self.total_users -= 1
             print("User removed...")
 
         else:
@@ -220,7 +213,7 @@ class Project:
         if task is not None:
             print("Task with ID:" + str(task_id) + " was found.")
             self.tasks.remove(task)
-            self.total_tasks -= 1
+            #self.total_tasks -= 1
             print("Task removed...")
         else:
             print("Task with ID:" + str(task_id) + " was not found.")
@@ -231,6 +224,7 @@ class Project:
         for user in users:
             print("{0}: {1}".format(user.id, user.name))
 
+
 #Util methods
 
 def get_filename(pid):
@@ -240,14 +234,19 @@ def get_filename(pid):
 
 def new_project(pname):
     proj = Project(pname)
-    print('Project Created with ID:' + str(proj.get_pid()))
+
+    print('Project ' + pname + ' was created with ID ' + str(proj.get_pid()))
     save_project(proj)
+
 
 
 def save_project(obj):
     file = get_filename(obj.get_pid())
     with open(file, 'wb') as output:
+        global last_pid
+        print('Last project ID: ' + str(last_pid))
         pickle.dump(obj, output, pickle.HIGHEST_PROTOCOL)
+        print('Saving to file...')
 
 def add_user(username, pid):
     file = get_filename(pid)
@@ -272,10 +271,12 @@ def remove_user(uid, pid):
         #Load project data
         with open(file, 'rb') as input:
             proj = pickle.load(input)
-            global last_uid
-            last_uid = proj.total_users
-            #Add User to project
             proj.delete_user(uid)
+            global last_uid
+            if len(proj.users) > 0:
+                last_uid = proj.users[-1].id
+            #Add User to project
+
             save_project(proj)
             proj.show_users()
     except FileNotFoundError:
@@ -315,8 +316,9 @@ def remove_task(taskid, pid):
         #Load project data
         with open(file, 'rb') as input:
             proj = pickle.load(input)
-            global last_taskid
-            last_taskid = proj.total_tasks
+            global last_tid
+            if len(proj.tasks) > 0:
+                last_tid = proj.tasks[-1].id
             #Remove task from project
             proj.delete_task(taskid)
             save_project(proj)
@@ -330,8 +332,9 @@ def completed_task(taskid, pid):
         #Load project data
         with open(file, 'rb') as input:
             proj = pickle.load(input)
-            global last_taskid
-            last_taskid = proj.total_tasks
+            global last_tid
+            if len(proj.tasks) > 0:
+                last_tid = proj.tasks[-1].id
             #Remove task from project
             proj.complete_task(taskid)
             save_project(proj)
@@ -342,7 +345,6 @@ def completed_task(taskid, pid):
 def view_tasks(pid):
     file = get_filename(pid)
     try:
-
         with open(file, 'rb') as input:
             proj = pickle.load(input)
             proj.show_tasks()
@@ -385,6 +387,17 @@ def generate_diagram(pid):
     except FileNotFoundError:
             print("ERROR: No projects created")
 
+def generate_gantt(pid):
+    file = get_filename(pid)
+    try:
+        #Load project data
+        with open(file, 'rb') as input:
+            proj = pickle.load(input)
+            proj.generate_gantt_chart()
+            #save_project(proj)
+
+    except FileNotFoundError:
+            print("ERROR: No projects created")
 
 
 '''
