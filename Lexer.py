@@ -6,8 +6,8 @@ reserved = {
     'add_member': 'ADD_MEMBER', #Done
     'delete_member' : 'DELETE_MEMBER', #Done
     'view_members' : 'VIEW_MEMBERS', #Done
-    'create_brainstorm':'CREATE_BRAINSTORM',
-    'add_idea':'ADD_IDEA', #No se si esta
+    'create_brainstorm':'CREATE_BRAINSTORM', #Done
+    'add_idea':'ADD_IDEA', #Done
     'delete_idea':'DELETE_IDEA', #No esta en la lista
     'add_task': 'ADD_TASK', #Done
     'edit_task': 'EDIT_TASK', #Done
@@ -18,12 +18,12 @@ reserved = {
     'graph_type':'GRAPH_TYPE', # Mikael
     'graph_axis':'GRAPH_AXIS', # Mikael
     'graph_data' : 'GRAPH_DATA', # Mikael
-    'view_brainstorm':'VIEW_BRAINSTORM', #No se si esta
-    'view_schedule': 'VIEW_SCHEDULE', #No se si esta
+    'view_brainstorm':'VIEW_BRAINSTORM', #Done
+    'view_schedule': 'VIEW_SCHEDULE', #Done
     'view_tasks' : 'VIEW_TASKS', #Done
-    'list_today' : 'LIST_TODAY', #####Falta
-    'list_week' : 'LIST_WEEK', #####Falta
-    'list_overdue' : 'LIST_OVERDUE', #####Falta
+    'list_today' : 'LIST_TODAY', #Done
+    'list_week' : 'LIST_WEEK', #Done
+    'list_overdue' : 'LIST_OVERDUE', #Done
     'generate_project' : 'GENERATE_PROJECT' #####Falta
 }
 

@@ -73,9 +73,11 @@ def p_statement(p):
         if p[1] == 'VIEW_SCHEDULE':
             Utils.generate_gantt(p[2])
         if p[1] == 'LIST_TODAY':
-            pass
+            Utils.view_today(p[2])
         if p[1] == 'LIST_WEEK':
-            pass
+            Utils.view_week(p[2])
+        if p[1] == 'LIST_OVERDUE':
+            Utils.view_overdue(p[2])
 
     except:
         print('Invalid Parameters')

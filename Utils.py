@@ -181,13 +181,14 @@ class Project:
         if not tasks:
             tasks = self.tasks
         for task in tasks:
-            print("{0}: {3} [start: {1}, due: {2}] [{4}] [Member id: {5}]\n".format(
+            print("Showing all tasks... \n")
+            print("{0}: {3} [Start Date: {1}, End Date: {2}] [Done?: {4}] [Member id: {5}]\n".format(
                 task.id, task.start_date, task.end_date, task.task, task.status, task.assigned_to))
 
     def show_today(self, tasks=None):
         if not tasks:
             tasks = self.tasks
-            today_tasks = [];
+            today_tasks = []
         for task in tasks:
             end = datetime.strptime(task.end_date, '%d-%m-%Y')
             if end.date() == datetime.today().date():
@@ -196,7 +197,7 @@ class Project:
         if len(today_tasks) > 0:
             for task in today_tasks:
                 print("Showing tasks for today... \n")
-                print("{0}: {3} [start: {1}, due: {2}] [{4}] [Member id: {5}]\n".format(
+                print("{0}: {3} [Start Date: {1}, End Date: {2}] [Done?: {4}] [Member id: {5}]\n".format(
                 task.id, task.start_date, task.end_date, task.task, task.status, task.assigned_to))
         else:
             print("No tasks are due today.\n")
@@ -204,7 +205,7 @@ class Project:
     def show_week(self, tasks=None):
         if not tasks:
             tasks = self.tasks
-            week_tasks = [];
+            week_tasks = []
             current_week = datetime.today().isocalendar()
         for task in tasks:
             end = datetime.strptime(task.end_date, '%d-%m-%Y').isocalendar()
@@ -214,13 +215,28 @@ class Project:
         if len(week_tasks) > 0:
             for task in week_tasks:
                 print("Showing tasks for this week... \n")
-                print("{0}: {3} [start: {1}, due: {2}] [{4}] [Member id: {5}]\n".format(
+                print("{0}: {3} [Start Date: {1}, End Date: {2}] [Done?: {4}] [Member id: {5}]\n".format(
                 task.id, task.start_date, task.end_date, task.task, task.status, task.assigned_to))
         else:
             print("No tasks are due for this week.\n")
 
-            #print(end_week)
 
+    def show_overdue(self, tasks=None):
+        if not tasks:
+            tasks = self.tasks
+            overdue_tasks = []
+        for task in tasks:
+            end = datetime.strptime(task.end_date, '%d-%m-%Y')
+            if  datetime.today().date() > end.date() and not task.status:
+                overdue_tasks.append(task)
+
+        if len(overdue_tasks) > 0:
+            for task in overdue_tasks:
+                print("Showing overdue tasks... \n")
+                print("{0}: {3} [Start Date: {1}, End Date: {2}] [Done?: {4}] [Member id: {5}]\n".format(
+                task.id, task.start_date, task.end_date, task.task, task.status, task.assigned_to))
+        else:
+            print("No overdue tasks.\n")
 
 
 
@@ -419,6 +435,24 @@ def view_today(pid):
         with open(file, 'rb') as input:
             proj = pickle.load(input)
             proj.show_today()
+    except FileNotFoundError:
+            print("ERROR: No projects created")
+
+def view_week(pid):
+    file = get_filename(pid)
+    try:
+        with open(file, 'rb') as input:
+            proj = pickle.load(input)
+            proj.show_week()
+    except FileNotFoundError:
+            print("ERROR: No projects created")
+
+def view_overdue(pid):
+    file = get_filename(pid)
+    try:
+        with open(file, 'rb') as input:
+            proj = pickle.load(input)
+            proj.show_overdue()
     except FileNotFoundError:
             print("ERROR: No projects created")
 

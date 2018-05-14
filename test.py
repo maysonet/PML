@@ -12,13 +12,13 @@ p0 = Utils.Project("Test project")
 #Date Format: DD-MM-YYYY   **MUST VALIDATE IN INPUT
 
 p0.new_task("a new task", "21-07-2017", "20-05-2018")
-p0.new_task("testing", "31-12-2018", "29-06-2019")
+p0.new_task("testing", "31-12-2018", "29-06-2017")
 p0.new_task("testing", "31-12-2018", "30-06-2019")
 p0.new_task("testing", "31-12-2018", "29-04-2019")
 
 #p0.show_today()
 
-p0.show_week()
+p0.show_overdue()
 
 
 #p1.new_task("task1", "21-07-2018", "25-08-2018")
