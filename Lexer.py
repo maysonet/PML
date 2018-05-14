@@ -5,22 +5,22 @@ reserved = {
     'new_project': 'NEW_PROJECT', #Done
     'add_member': 'ADD_MEMBER', #Done
     'delete_member' : 'DELETE_MEMBER', #Done
-    'view_members' : 'VIEW_MEMBERS', #Falta
+    'view_members' : 'VIEW_MEMBERS', #Done
     'create_brainstorm':'CREATE_BRAINSTORM',
     'add_idea':'ADD_IDEA', #No se si esta
     'delete_idea':'DELETE_IDEA', #No esta en la lista
     'add_task': 'ADD_TASK', #Done
-    'edit_task': 'EDIT_TASK', #Falta
+    'edit_task': 'EDIT_TASK', #Done
     'delete_task': 'DELETE_TASK', #Done
     'completed_task': 'COMPLETED_TASK', #Done
-    'assign_task': 'ASSIGN_TASK', #####Falta
-    'create_graph': 'CREATE_GRAPH', ## Mikael
+    'assign_task': 'ASSIGN_TASK', #Done
+    'create_graph': 'CREATE_GRAPH', # Mikael
     'graph_type':'GRAPH_TYPE', # Mikael
     'graph_axis':'GRAPH_AXIS', # Mikael
     'graph_data' : 'GRAPH_DATA', # Mikael
-    'view_brainstorm':'VIEW_BRAINSTORM', #Done
-    'view_schedule': 'VIEW_SCHEDULE', #Done
-    'view_tasks' : 'VIEW_TASKS', ##Done
+    'view_brainstorm':'VIEW_BRAINSTORM', #No se si esta
+    'view_schedule': 'VIEW_SCHEDULE', #No se si esta
+    'view_tasks' : 'VIEW_TASKS', #Done
     'list_today' : 'LIST_TODAY', #####Falta
     'list_week' : 'LIST_WEEK', #####Falta
     'list_overdue' : 'LIST_OVERDUE', #####Falta

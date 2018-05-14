@@ -13,18 +13,24 @@ def p_statement(p):
                 | command PHRASE NUMBER
                 | command NUMBER
                 | command NUMBER NUMBER
+                | command NUMBER NUMBER NUMBER
     """
     try:
+        # New_project << project_name >>
         if p[1] == 'NEW_PROJECT':
             Utils.new_project(p[2])
             # OR we can just accept project name and let the system assign ID
             # Need to fix input rules so that SPACES are allowed in Project name
+
+        # Add_member << member_name >> << project_id >>
         if p[1] == 'ADD_MEMBER':
             Utils.add_user(p[2], p[3])
 
+        # Delete_member << member_id >> <<project_id>>
         if p[1] == 'DELETE_MEMBER':
             Utils.remove_user(p[2], p[3])
 
+        # View_members <<project_id>>
         if p[1] == 'VIEW_MEMBERS':
             Utils.view_members(p[2])
 
@@ -45,6 +51,10 @@ def p_statement(p):
         # Completed_task <<task_id>> <<project_id>>
         if p[1] == 'COMPLETED_TASK':
             Utils.completed_task(p[2], p[3])
+
+        # Assign_task <<task_id>> <<member_id>> <<project_id>>
+        if p[1] == 'ASSIGN_TASK':
+            Utils.assign_task(p[2], p[3], p[4])
 
         # view_tasks <<project_id>>
         if p[1] == 'VIEW_TASKS':

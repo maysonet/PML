@@ -50,6 +50,7 @@ class Task:
         last_tid += 1
         self.id = last_tid
         self.status = False
+        self.assigned_to = None
 
 class User:
     def __init__(self, name):
@@ -166,13 +167,22 @@ class Project:
         else:
             print("Task with ID:" + str(task_id) + " was not found.")
 
+    def assign_task(self, task_id, member_id):
+        print('estoy en el edit')
+        task = self._find_task(task_id)
+        if task is not None:
+            task.assigned_to = member_id
+            #return True
+        else:
+            print("Task with ID:" + str(task_id) + " was not found.")
+
 
     def show_tasks(self, tasks=None):
         if not tasks:
             tasks = self.tasks
         for task in tasks:
-            print("{0}: {3} [start: {1}, due: {2}] [{4}]\n".format(
-                task.id, task.start_date, task.end_date, task.task, task.status))
+            print("{0}: {3} [start: {1}, due: {2}] [{4}] [Member id: {5}]\n".format(
+                task.id, task.start_date, task.end_date, task.task, task.status, task.assigned_to))
 
     def complete_task(self, task_id): #change task status to 1 (completed)
         #pass
@@ -184,8 +194,18 @@ class Project:
         else:
             print("Task with ID:" + str(task_id) + " was not found.")
 
-    def assign_task(task_id, user_id):
-        pass
+        def assign_task(self, task_id, member_id):  # change task status to 1 (completed)
+            # pass
+            task = self._find_task(task_id)
+            if task is not None:
+                task.assigned_to = member_id
+                # return True
+            # return False
+            else:
+                print("Task with ID:" + str(task_id) + " was not found.")
+
+    #def assign_task(task_id, user_id):
+    #    pass
 
     def get_task_status(task_id):
         pass
@@ -413,6 +433,23 @@ def edit_task(taskid, start_date, end_date, pid):
                 last_tid = proj.tasks[-1].id
             #Remove task from project
             proj.edit_task(taskid, start_date, end_date)
+            save_project(proj)
+            proj.show_tasks()
+    except FileNotFoundError:
+            print("ERROR: No projects created")
+
+def assign_task(taskid, memberid, pid):
+    print ('primer edit')
+    file = get_filename(pid)
+    try:
+        #Load project data
+        with open(file, 'rb') as input:
+            proj = pickle.load(input)
+            global last_tid
+            if len(proj.tasks) > 0:
+                last_tid = proj.tasks[-1].id
+            #Remove task from project
+            proj.assign_task(taskid, memberid)
             save_project(proj)
             proj.show_tasks()
     except FileNotFoundError:

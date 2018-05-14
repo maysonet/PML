@@ -2,36 +2,36 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    NEW_PROJECT
-    CREATE_GRAPH
-    LIST_OVERDUE
-    VIEW_MEMBERS
-    GRAPH_AXIS
-    ADD_MEMBER
-    CREATE_BRAINSTORM
-    ADD_IDEA
-    COMPLETED_TASK
-    DELETE_IDEA
-    RPAREN
-    GRAPH_DATA
-    DELETE_TASK
-    LPAREN
-    VIEW_SCHEDULE
     VIEW_TASKS
-    EDIT_TASK
-    NAME
+    CREATE_BRAINSTORM
+    COMPLETED_TASK
     COMMA
-    GRAPH_TYPE
     GENERATE_PROJECT
-    LIST_TODAY
+    LIST_WEEK
+    GRAPH_TYPE
+    ADD_MEMBER
+    RPAREN
+    DELETE_TASK
+    CREATE_GRAPH
+    USERNAME
+    LPAREN
+    NUMBERLIST
+    ADD_IDEA
+    NAMELIST
+    GRAPH_DATA
+    VIEW_MEMBERS
     VIEW_BRAINSTORM
     ADD_TASK
-    NUMBERLIST
-    DELETE_MEMBER
     ASSIGN_TASK
-    LIST_WEEK
-    NAMELIST
-    USERNAME
+    EDIT_TASK
+    NEW_PROJECT
+    DELETE_MEMBER
+    VIEW_SCHEDULE
+    LIST_OVERDUE
+    GRAPH_AXIS
+    DELETE_IDEA
+    LIST_TODAY
+    NAME
 
 Grammar
 
@@ -42,7 +42,8 @@ Rule 3     statement -> command NUMBER DATE DATE NUMBER
 Rule 4     statement -> command PHRASE NUMBER
 Rule 5     statement -> command NUMBER
 Rule 6     statement -> command NUMBER NUMBER
-Rule 7     command -> COMMAND
+Rule 7     statement -> command NUMBER NUMBER NUMBER
+Rule 8     command -> COMMAND
 
 Terminals, with rules where they appear
 
@@ -51,7 +52,7 @@ ADD_MEMBER           :
 ADD_TASK             : 
 ASSIGN_TASK          : 
 COMMA                : 
-COMMAND              : 7
+COMMAND              : 8
 COMPLETED_TASK       : 
 CREATE_BRAINSTORM    : 
 CREATE_GRAPH         : 
@@ -71,7 +72,7 @@ LPAREN               :
 NAME                 : 
 NAMELIST             : 
 NEW_PROJECT          : 
-NUMBER               : 2 3 3 4 5 6 6
+NUMBER               : 2 3 3 4 5 6 6 7 7 7
 NUMBERLIST           : 
 PHRASE               : 1 2 4
 RPAREN               : 
@@ -84,7 +85,7 @@ error                :
 
 Nonterminals, with rules where they appear
 
-command              : 1 2 3 4 5 6
+command              : 1 2 3 4 5 6 7
 statement            : 0
 
 Parsing method: LALR
@@ -98,25 +99,26 @@ state 0
     (4) statement -> . command PHRASE NUMBER
     (5) statement -> . command NUMBER
     (6) statement -> . command NUMBER NUMBER
-    (7) command -> . COMMAND
+    (7) statement -> . command NUMBER NUMBER NUMBER
+    (8) command -> . COMMAND
 
-    COMMAND         shift and go to state 1
+    COMMAND         shift and go to state 2
 
-    statement                      shift and go to state 2
     command                        shift and go to state 3
+    statement                      shift and go to state 1
 
 state 1
 
-    (7) command -> COMMAND .
+    (0) S' -> statement .
 
-    PHRASE          reduce using rule 7 (command -> COMMAND .)
-    NUMBER          reduce using rule 7 (command -> COMMAND .)
 
 
 state 2
 
-    (0) S' -> statement .
+    (8) command -> COMMAND .
 
+    PHRASE          reduce using rule 8 (command -> COMMAND .)
+    NUMBER          reduce using rule 8 (command -> COMMAND .)
 
 
 state 3
@@ -127,6 +129,7 @@ state 3
     (4) statement -> command . PHRASE NUMBER
     (5) statement -> command . NUMBER
     (6) statement -> command . NUMBER NUMBER
+    (7) statement -> command . NUMBER NUMBER NUMBER
 
     PHRASE          shift and go to state 5
     NUMBER          shift and go to state 4
@@ -137,10 +140,11 @@ state 4
     (3) statement -> command NUMBER . DATE DATE NUMBER
     (5) statement -> command NUMBER .
     (6) statement -> command NUMBER . NUMBER
+    (7) statement -> command NUMBER . NUMBER NUMBER
 
-    DATE            shift and go to state 6
+    DATE            shift and go to state 7
     $end            reduce using rule 5 (statement -> command NUMBER .)
-    NUMBER          shift and go to state 7
+    NUMBER          shift and go to state 6
 
 
 state 5
@@ -156,16 +160,18 @@ state 5
 
 state 6
 
-    (3) statement -> command NUMBER DATE . DATE NUMBER
+    (6) statement -> command NUMBER NUMBER .
+    (7) statement -> command NUMBER NUMBER . NUMBER
 
-    DATE            shift and go to state 10
+    $end            reduce using rule 6 (statement -> command NUMBER NUMBER .)
+    NUMBER          shift and go to state 10
 
 
 state 7
 
-    (6) statement -> command NUMBER NUMBER .
+    (3) statement -> command NUMBER DATE . DATE NUMBER
 
-    $end            reduce using rule 6 (statement -> command NUMBER NUMBER .)
+    DATE            shift and go to state 11
 
 
 state 8
@@ -179,31 +185,38 @@ state 9
 
     (2) statement -> command PHRASE DATE . DATE NUMBER
 
-    DATE            shift and go to state 11
+    DATE            shift and go to state 12
 
 
 state 10
 
-    (3) statement -> command NUMBER DATE DATE . NUMBER
+    (7) statement -> command NUMBER NUMBER NUMBER .
 
-    NUMBER          shift and go to state 12
+    $end            reduce using rule 7 (statement -> command NUMBER NUMBER NUMBER .)
 
 
 state 11
 
-    (2) statement -> command PHRASE DATE DATE . NUMBER
+    (3) statement -> command NUMBER DATE DATE . NUMBER
 
     NUMBER          shift and go to state 13
 
 
 state 12
 
+    (2) statement -> command PHRASE DATE DATE . NUMBER
+
+    NUMBER          shift and go to state 14
+
+
+state 13
+
     (3) statement -> command NUMBER DATE DATE NUMBER .
 
     $end            reduce using rule 3 (statement -> command NUMBER DATE DATE NUMBER .)
 
 
-state 13
+state 14
 
     (2) statement -> command PHRASE DATE DATE NUMBER .
 
