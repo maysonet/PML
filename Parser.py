@@ -9,6 +9,7 @@ def p_statement(p):
     """
     statement : command PHRASE
                 | command PHRASE DATE DATE NUMBER
+                | command NUMBER DATE DATE NUMBER
                 | command PHRASE NUMBER
                 | command NUMBER
                 | command NUMBER NUMBER
@@ -36,6 +37,10 @@ def p_statement(p):
         if p[1] == 'DELETE_TASK':
             #Hay que hacerle test
             Utils.remove_task(p[2], p[3])
+
+        # Edit_task <<task_id>> <<start_date>> <<finish_date>> <<project_id>>
+        if p[1] == 'EDIT_TASK':
+            Utils.edit_task(p[2], p[3], p[4], p[5])
 
         # Completed_task <<task_id>> <<project_id>>
         if p[1] == 'COMPLETED_TASK':

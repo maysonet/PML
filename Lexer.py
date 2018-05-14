@@ -5,14 +5,14 @@ reserved = {
     'new_project': 'NEW_PROJECT', #Done
     'add_member': 'ADD_MEMBER', #Done
     'delete_member' : 'DELETE_MEMBER', #Done
-    'view_members' : 'VIEW_MEMBERS', ##Done
-    'create_brainstorm':'CREATE_BRAINSTORM', #Done
-    'add_idea':'ADD_IDEA', #Done
+    'view_members' : 'VIEW_MEMBERS', #Falta
+    'create_brainstorm':'CREATE_BRAINSTORM',
+    'add_idea':'ADD_IDEA', #No se si esta
     'delete_idea':'DELETE_IDEA', #No esta en la lista
     'add_task': 'ADD_TASK', #Done
-    'edit_task': 'EDIT_TASK', #####Falta
-    'delete_task': 'DELETE_TASK', ##Done
-    'completed_task': 'COMPLETED_TASK', ##Done
+    'edit_task': 'EDIT_TASK', #Falta
+    'delete_task': 'DELETE_TASK', #Done
+    'completed_task': 'COMPLETED_TASK', #Done
     'assign_task': 'ASSIGN_TASK', #####Falta
     'create_graph': 'CREATE_GRAPH', ## Mikael
     'graph_type':'GRAPH_TYPE', # Mikael

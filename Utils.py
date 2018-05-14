@@ -155,12 +155,16 @@ class Project:
         return None
 
     def edit_task(self, task_id, start_date, end_date):
+        print('estoy en el edit')
         task = self._find_task(task_id)
-        if task:
+        start_obj = datetime.strptime(start_date, '%d-%m-%Y')
+        end_obj = datetime.strptime(end_date, '%d-%m-%Y')
+        if task is not None:
             task.start_date = start_date
             task.end_date = end_date
-            return True
-        return False
+            #return True
+        else:
+            print("Task with ID:" + str(task_id) + " was not found.")
 
 
     def show_tasks(self, tasks=None):
@@ -175,7 +179,6 @@ class Project:
         task = self._find_task(task_id)
         if task is not None:
             task.status = True
-            print("Task with ID:" + str(task_id) + " marked as Completed.")
             #return True
         #return False
         else:
@@ -207,7 +210,6 @@ class Project:
             print("User with ID:" + str(user_id) + " was not found.")
 
     def delete_task(self, task_id):
-        # En proceso !!!!!!
         #pass
         task = self._find_task(task_id)
         if task is not None:
@@ -399,6 +401,22 @@ def generate_gantt(pid):
     except FileNotFoundError:
             print("ERROR: No projects created")
 
+def edit_task(taskid, start_date, end_date, pid):
+    print ('primer edit')
+    file = get_filename(pid)
+    try:
+        #Load project data
+        with open(file, 'rb') as input:
+            proj = pickle.load(input)
+            global last_tid
+            if len(proj.tasks) > 0:
+                last_tid = proj.tasks[-1].id
+            #Remove task from project
+            proj.edit_task(taskid, start_date, end_date)
+            save_project(proj)
+            proj.show_tasks()
+    except FileNotFoundError:
+            print("ERROR: No projects created")
 
 '''
 #Generic Code to LOAD existing project
