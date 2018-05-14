@@ -24,7 +24,7 @@ reserved = {
     'list_today' : 'LIST_TODAY', #Done
     'list_week' : 'LIST_WEEK', #Done
     'list_overdue' : 'LIST_OVERDUE', #Done
-    'generate_project' : 'GENERATE_PROJECT' #####Falta
+    'generate_project' : 'GENERATE_PROJECT' #Done
 }
 
 # Tokens

@@ -69,6 +69,10 @@ def p_statement(p):
         if p[1] == 'VIEW_BRAINSTORM':
             Utils.generate_diagram(p[2])
 
+        # generate_project <<project_id>>
+        if p[1] == 'GENERATE_PROJECT':
+            Utils.generate_project(p[2])
+
         #The following NEED to be IMPLEMENTED in LEXER and UTILS
         if p[1] == 'VIEW_SCHEDULE':
             Utils.generate_gantt(p[2])
@@ -78,6 +82,8 @@ def p_statement(p):
             Utils.view_week(p[2])
         if p[1] == 'LIST_OVERDUE':
             Utils.view_overdue(p[2])
+
+
 
     except:
         print('Invalid Parameters')

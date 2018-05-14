@@ -242,8 +242,6 @@ class Project:
         else:
             print("No overdue tasks.\n")
 
-
-
     def complete_task(self, task_id): #change task status to 1 (completed)
         #pass
         task = self._find_task(task_id)
@@ -264,8 +262,28 @@ class Project:
             else:
                 print("Task with ID:" + str(task_id) + " was not found.")
 
-    #def assign_task(task_id, user_id):
-    #    pass
+    def generate_project(self, pid):
+        file = open(self.name + '.txt', 'w')
+        file.close()
+        with open(self.name +'.txt', 'w') as f:
+            f.write('--------------GENERATE_PROJECT--------------\n\n')
+            f.write('Project Name : ' + self.name + '\n\n')
+            f.write('Project Id : ' + pid  + '\n\n')
+            f.write('Project Members : \n')
+            users = None
+            if not users:
+                users = self.users
+            for user in users:
+                f.write("{0}: {1}".format(user.id, user.name) + '\n')
+            f.write('\nProject Tasks : \n')
+            tasks = None
+            if not tasks:
+                tasks = self.tasks
+            for task in tasks:
+                f.write("{0}: {3} [Start Date: {1}, End Date: {2}] [Done?: {4}] [Member id: {5}]\n".format(
+                    task.id, task.start_date, task.end_date, task.task, task.status, task.assigned_to) + '\n')
+            f.close()
+
 
     def get_task_status(task_id):
         pass
@@ -509,7 +527,6 @@ def generate_gantt(pid):
             print("ERROR: No projects created with pid="+str(pid))
 
 def edit_task(taskid, start_date, end_date, pid):
-    print ('primer edit')
     file = get_filename(pid)
     try:
         #Load project data
@@ -526,7 +543,6 @@ def edit_task(taskid, start_date, end_date, pid):
             print("ERROR: No projects created with pid="+str(pid))
 
 def assign_task(taskid, memberid, pid):
-    print ('primer edit')
     file = get_filename(pid)
     try:
         #Load project data
@@ -539,6 +555,17 @@ def assign_task(taskid, memberid, pid):
             proj.assign_task(taskid, memberid)
             save_project(proj)
             proj.show_tasks()
+    except FileNotFoundError:
+            print("ERROR: No projects created with pid="+str(pid))
+
+def generate_project (pid):
+    file = get_filename(pid)
+    try:
+        #Load project data
+        with open(file, 'rb') as input:
+            proj = pickle.load(input)
+            proj.generate_project(pid)
+            print ('Project text Generated')
     except FileNotFoundError:
             print("ERROR: No projects created with pid="+str(pid))
 
