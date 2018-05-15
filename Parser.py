@@ -26,6 +26,7 @@ def p_statement(p):
             | generate_project
             | generate_pie
             | generate_bar
+            | generate_line
 
 
 
@@ -172,6 +173,13 @@ def p_generate_bar(p):
     """
     # generate_project <<project_id>>
     Utils.generate_bar(p[2], p[3])
+
+def p_generate_line(p):
+    """
+    generate_line : GENERATE_LINE LBRK PHRASE RBRK LBRK PHRASE RBRK NUMBERLIST NUMBERLIST
+    """
+    # generate_project <<project_id>>
+    Utils.generate_line(p[3], p[6], p[8], p[9])
 
 def p_error(p):
     if p:

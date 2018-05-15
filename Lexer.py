@@ -27,23 +27,21 @@ reserved = {
 
 # Tokens
 tokens = ["NAME",
-          "USERNAME",
           "DATE",
           "NUMBER",
           "PHRASE",
           "NUMBERLIST",
           "NAMELIST",
-          'LPAREN', 'RPAREN', 'COMMA',
+          'LBRK', 'RBRK', 'COMMA',
           "ID"] + list(reserved.values())
 
 # Simple Regular Expressions
 t_ignore = ' \t'
-t_USERNAME = r'@[a-zA-Z]+'
 t_NAME = r'[a-zA-Z]+'
 t_PHRASE = r'[a-zA-Z ]+'
 t_NUMBER = r'[\d+]+'
-t_LPAREN = r'\('
-t_RPAREN = r'\)'
+t_LBRK = r'\['
+t_RBRK = r'\]'
 t_COMMA = r'\,'
 #t_COMMAND = r'[a-zA-Z]+_[a-zA-Z]+'
 ## NEED regular expression to accept characters and spaces - for tasks
@@ -83,14 +81,14 @@ def t_error(t):
 lexer = lex.lex()
 
 # Test it out
-data0 = '''graph_data (woo,goo,joo) (12,-14,16)'''
+data0 = '''generate_line (woo) (wee) (12,-14,16) (12,12,12)'''
 data1 = '''new_project member Name project Name'''
 data2 = '''delete_member @member  project Name'''
 data3 = '''create_brainstorm brainstorn Name '''
 #data1 = 2012-02-20 2012-02-26
 
 # Give the lexer some input
-lexer.input(data1)
+lexer.input(data0)
 
 # Tokenize
 while True:

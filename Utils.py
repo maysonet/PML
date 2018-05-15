@@ -559,6 +559,26 @@ def generate_bar(labels, values):
         plt.xticks(y_pos, labels)
         plt.show()
 
+def generate_line(xlabel,ylabel,xvalues, yvalues):
+
+    cleanx = xvalues.replace("(", "").replace(")","")
+    xdata = list(map(int, cleanx.split(",")))
+
+    cleany = yvalues.replace("(", "").replace(")","")
+    ydata = list(map(int, cleany.split(",")))
+
+    xlabel = xlabel.replace("[", "").replace("]","")
+    ylabel = ylabel.replace("[", "").replace("]","")
+
+    if len(xdata) != len(ydata):
+        print("ERROR: # of X values must match # of Y values")
+    else:
+        print("Generating line chart...")
+        plt.plot(xdata, ydata)
+        plt.ylabel(ylabel)
+        plt.xlabel(xlabel)
+        plt.show()
+
 '''
 #Generic Code to LOAD existing project
 filename = "data.PML"

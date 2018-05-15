@@ -3,12 +3,8 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 Unused terminals:
 
     COMMA
-    GENERATE_LINE
     ID
-    LPAREN
     NAME
-    RPAREN
-    USERNAME
 
 Grammar
 
@@ -33,61 +29,62 @@ Rule 17    statement -> assign_task
 Rule 18    statement -> generate_project
 Rule 19    statement -> generate_pie
 Rule 20    statement -> generate_bar
-Rule 21    create_project -> NEW_PROJECT PHRASE
-Rule 22    add_member -> ADD_MEMBER PHRASE NUMBER
-Rule 23    add_brainstorm -> CREATE_BRAINSTORM PHRASE NUMBER
-Rule 24    add_idea -> ADD_IDEA PHRASE NUMBER
-Rule 25    view_members -> VIEW_MEMBERS NUMBER
-Rule 26    view_tasks -> VIEW_TASKS NUMBER
-Rule 27    view_brainstorm -> VIEW_BRAINSTORM NUMBER
-Rule 28    view_schedule -> VIEW_SCHEDULE NUMBER
-Rule 29    view_today -> LIST_TODAY NUMBER
-Rule 30    view_week -> LIST_WEEK NUMBER
-Rule 31    view_overdue -> LIST_OVERDUE NUMBER
-Rule 32    delete_member -> DELETE_MEMBER NUMBER NUMBER
-Rule 33    delete_task -> DELETE_TASK NUMBER NUMBER
-Rule 34    complete_task -> COMPLETED_TASK NUMBER NUMBER
-Rule 35    add_task -> ADD_TASK PHRASE DATE DATE NUMBER
-Rule 36    edit_task -> EDIT_TASK NUMBER DATE DATE NUMBER
-Rule 37    assign_task -> ASSIGN_TASK NUMBER NUMBER NUMBER
-Rule 38    generate_project -> GENERATE_PROJECT NUMBER
-Rule 39    generate_pie -> GENERATE_PIE NAMELIST NUMBERLIST
-Rule 40    generate_bar -> GENERATE_BAR NAMELIST NUMBERLIST
+Rule 21    statement -> generate_line
+Rule 22    create_project -> NEW_PROJECT PHRASE
+Rule 23    add_member -> ADD_MEMBER PHRASE NUMBER
+Rule 24    add_brainstorm -> CREATE_BRAINSTORM PHRASE NUMBER
+Rule 25    add_idea -> ADD_IDEA PHRASE NUMBER
+Rule 26    view_members -> VIEW_MEMBERS NUMBER
+Rule 27    view_tasks -> VIEW_TASKS NUMBER
+Rule 28    view_brainstorm -> VIEW_BRAINSTORM NUMBER
+Rule 29    view_schedule -> VIEW_SCHEDULE NUMBER
+Rule 30    view_today -> LIST_TODAY NUMBER
+Rule 31    view_week -> LIST_WEEK NUMBER
+Rule 32    view_overdue -> LIST_OVERDUE NUMBER
+Rule 33    delete_member -> DELETE_MEMBER NUMBER NUMBER
+Rule 34    delete_task -> DELETE_TASK NUMBER NUMBER
+Rule 35    complete_task -> COMPLETED_TASK NUMBER NUMBER
+Rule 36    add_task -> ADD_TASK PHRASE DATE DATE NUMBER
+Rule 37    edit_task -> EDIT_TASK NUMBER DATE DATE NUMBER
+Rule 38    assign_task -> ASSIGN_TASK NUMBER NUMBER NUMBER
+Rule 39    generate_project -> GENERATE_PROJECT NUMBER
+Rule 40    generate_pie -> GENERATE_PIE NAMELIST NUMBERLIST
+Rule 41    generate_bar -> GENERATE_BAR NAMELIST NUMBERLIST
+Rule 42    generate_line -> GENERATE_LINE LBRK PHRASE RBRK LBRK PHRASE RBRK NUMBERLIST NUMBERLIST
 
 Terminals, with rules where they appear
 
-ADD_IDEA             : 24
-ADD_MEMBER           : 22
-ADD_TASK             : 35
-ASSIGN_TASK          : 37
+ADD_IDEA             : 25
+ADD_MEMBER           : 23
+ADD_TASK             : 36
+ASSIGN_TASK          : 38
 COMMA                : 
-COMPLETED_TASK       : 34
-CREATE_BRAINSTORM    : 23
-DATE                 : 35 35 36 36
-DELETE_MEMBER        : 32
-DELETE_TASK          : 33
-EDIT_TASK            : 36
-GENERATE_BAR         : 40
-GENERATE_LINE        : 
-GENERATE_PIE         : 39
-GENERATE_PROJECT     : 38
+COMPLETED_TASK       : 35
+CREATE_BRAINSTORM    : 24
+DATE                 : 36 36 37 37
+DELETE_MEMBER        : 33
+DELETE_TASK          : 34
+EDIT_TASK            : 37
+GENERATE_BAR         : 41
+GENERATE_LINE        : 42
+GENERATE_PIE         : 40
+GENERATE_PROJECT     : 39
 ID                   : 
-LIST_OVERDUE         : 31
-LIST_TODAY           : 29
-LIST_WEEK            : 30
-LPAREN               : 
+LBRK                 : 42 42
+LIST_OVERDUE         : 32
+LIST_TODAY           : 30
+LIST_WEEK            : 31
 NAME                 : 
-NAMELIST             : 39 40
-NEW_PROJECT          : 21
-NUMBER               : 22 23 24 25 26 27 28 29 30 31 32 32 33 33 34 34 35 36 36 37 37 37 38
-NUMBERLIST           : 39 40
-PHRASE               : 21 22 23 24 35
-RPAREN               : 
-USERNAME             : 
-VIEW_BRAINSTORM      : 27
-VIEW_MEMBERS         : 25
-VIEW_SCHEDULE        : 28
-VIEW_TASKS           : 26
+NAMELIST             : 40 41
+NEW_PROJECT          : 22
+NUMBER               : 23 24 25 26 27 28 29 30 31 32 33 33 34 34 35 35 36 37 37 38 38 38 39
+NUMBERLIST           : 40 41 42 42
+PHRASE               : 22 23 24 25 36 42 42
+RBRK                 : 42 42
+VIEW_BRAINSTORM      : 28
+VIEW_MEMBERS         : 26
+VIEW_SCHEDULE        : 29
+VIEW_TASKS           : 27
 error                : 
 
 Nonterminals, with rules where they appear
@@ -103,6 +100,7 @@ delete_member        : 13
 delete_task          : 14
 edit_task            : 16
 generate_bar         : 20
+generate_line        : 21
 generate_pie         : 19
 generate_project     : 18
 statement            : 0
@@ -139,47 +137,50 @@ state 0
     (18) statement -> . generate_project
     (19) statement -> . generate_pie
     (20) statement -> . generate_bar
-    (21) create_project -> . NEW_PROJECT PHRASE
-    (22) add_member -> . ADD_MEMBER PHRASE NUMBER
-    (23) add_brainstorm -> . CREATE_BRAINSTORM PHRASE NUMBER
-    (24) add_idea -> . ADD_IDEA PHRASE NUMBER
-    (35) add_task -> . ADD_TASK PHRASE DATE DATE NUMBER
-    (25) view_members -> . VIEW_MEMBERS NUMBER
-    (26) view_tasks -> . VIEW_TASKS NUMBER
-    (27) view_brainstorm -> . VIEW_BRAINSTORM NUMBER
-    (28) view_schedule -> . VIEW_SCHEDULE NUMBER
-    (29) view_today -> . LIST_TODAY NUMBER
-    (30) view_week -> . LIST_WEEK NUMBER
-    (31) view_overdue -> . LIST_OVERDUE NUMBER
-    (32) delete_member -> . DELETE_MEMBER NUMBER NUMBER
-    (33) delete_task -> . DELETE_TASK NUMBER NUMBER
-    (34) complete_task -> . COMPLETED_TASK NUMBER NUMBER
-    (36) edit_task -> . EDIT_TASK NUMBER DATE DATE NUMBER
-    (37) assign_task -> . ASSIGN_TASK NUMBER NUMBER NUMBER
-    (38) generate_project -> . GENERATE_PROJECT NUMBER
-    (39) generate_pie -> . GENERATE_PIE NAMELIST NUMBERLIST
-    (40) generate_bar -> . GENERATE_BAR NAMELIST NUMBERLIST
+    (21) statement -> . generate_line
+    (22) create_project -> . NEW_PROJECT PHRASE
+    (23) add_member -> . ADD_MEMBER PHRASE NUMBER
+    (24) add_brainstorm -> . CREATE_BRAINSTORM PHRASE NUMBER
+    (25) add_idea -> . ADD_IDEA PHRASE NUMBER
+    (36) add_task -> . ADD_TASK PHRASE DATE DATE NUMBER
+    (26) view_members -> . VIEW_MEMBERS NUMBER
+    (27) view_tasks -> . VIEW_TASKS NUMBER
+    (28) view_brainstorm -> . VIEW_BRAINSTORM NUMBER
+    (29) view_schedule -> . VIEW_SCHEDULE NUMBER
+    (30) view_today -> . LIST_TODAY NUMBER
+    (31) view_week -> . LIST_WEEK NUMBER
+    (32) view_overdue -> . LIST_OVERDUE NUMBER
+    (33) delete_member -> . DELETE_MEMBER NUMBER NUMBER
+    (34) delete_task -> . DELETE_TASK NUMBER NUMBER
+    (35) complete_task -> . COMPLETED_TASK NUMBER NUMBER
+    (37) edit_task -> . EDIT_TASK NUMBER DATE DATE NUMBER
+    (38) assign_task -> . ASSIGN_TASK NUMBER NUMBER NUMBER
+    (39) generate_project -> . GENERATE_PROJECT NUMBER
+    (40) generate_pie -> . GENERATE_PIE NAMELIST NUMBERLIST
+    (41) generate_bar -> . GENERATE_BAR NAMELIST NUMBERLIST
+    (42) generate_line -> . GENERATE_LINE LBRK PHRASE RBRK LBRK PHRASE RBRK NUMBERLIST NUMBERLIST
 
-    NEW_PROJECT     shift and go to state 22
-    ADD_MEMBER      shift and go to state 23
-    CREATE_BRAINSTORM shift and go to state 24
-    ADD_IDEA        shift and go to state 25
-    ADD_TASK        shift and go to state 26
-    VIEW_MEMBERS    shift and go to state 27
-    VIEW_TASKS      shift and go to state 28
-    VIEW_BRAINSTORM shift and go to state 29
-    VIEW_SCHEDULE   shift and go to state 30
-    LIST_TODAY      shift and go to state 31
-    LIST_WEEK       shift and go to state 32
-    LIST_OVERDUE    shift and go to state 33
-    DELETE_MEMBER   shift and go to state 34
-    DELETE_TASK     shift and go to state 35
-    COMPLETED_TASK  shift and go to state 36
-    EDIT_TASK       shift and go to state 37
-    ASSIGN_TASK     shift and go to state 38
-    GENERATE_PROJECT shift and go to state 39
-    GENERATE_PIE    shift and go to state 40
-    GENERATE_BAR    shift and go to state 41
+    NEW_PROJECT     shift and go to state 23
+    ADD_MEMBER      shift and go to state 24
+    CREATE_BRAINSTORM shift and go to state 25
+    ADD_IDEA        shift and go to state 26
+    ADD_TASK        shift and go to state 27
+    VIEW_MEMBERS    shift and go to state 28
+    VIEW_TASKS      shift and go to state 29
+    VIEW_BRAINSTORM shift and go to state 30
+    VIEW_SCHEDULE   shift and go to state 31
+    LIST_TODAY      shift and go to state 32
+    LIST_WEEK       shift and go to state 33
+    LIST_OVERDUE    shift and go to state 34
+    DELETE_MEMBER   shift and go to state 35
+    DELETE_TASK     shift and go to state 36
+    COMPLETED_TASK  shift and go to state 37
+    EDIT_TASK       shift and go to state 38
+    ASSIGN_TASK     shift and go to state 39
+    GENERATE_PROJECT shift and go to state 40
+    GENERATE_PIE    shift and go to state 41
+    GENERATE_BAR    shift and go to state 42
+    GENERATE_LINE   shift and go to state 43
 
     statement                      shift and go to state 1
     create_project                 shift and go to state 2
@@ -202,6 +203,7 @@ state 0
     generate_project               shift and go to state 19
     generate_pie                   shift and go to state 20
     generate_bar                   shift and go to state 21
+    generate_line                  shift and go to state 22
 
 state 1
 
@@ -351,392 +353,462 @@ state 21
 
 state 22
 
-    (21) create_project -> NEW_PROJECT . PHRASE
+    (21) statement -> generate_line .
 
-    PHRASE          shift and go to state 42
+    $end            reduce using rule 21 (statement -> generate_line .)
 
 
 state 23
 
-    (22) add_member -> ADD_MEMBER . PHRASE NUMBER
-
-    PHRASE          shift and go to state 43
-
-
-state 24
-
-    (23) add_brainstorm -> CREATE_BRAINSTORM . PHRASE NUMBER
+    (22) create_project -> NEW_PROJECT . PHRASE
 
     PHRASE          shift and go to state 44
 
 
-state 25
+state 24
 
-    (24) add_idea -> ADD_IDEA . PHRASE NUMBER
+    (23) add_member -> ADD_MEMBER . PHRASE NUMBER
 
     PHRASE          shift and go to state 45
 
 
-state 26
+state 25
 
-    (35) add_task -> ADD_TASK . PHRASE DATE DATE NUMBER
+    (24) add_brainstorm -> CREATE_BRAINSTORM . PHRASE NUMBER
 
     PHRASE          shift and go to state 46
 
 
+state 26
+
+    (25) add_idea -> ADD_IDEA . PHRASE NUMBER
+
+    PHRASE          shift and go to state 47
+
+
 state 27
 
-    (25) view_members -> VIEW_MEMBERS . NUMBER
+    (36) add_task -> ADD_TASK . PHRASE DATE DATE NUMBER
 
-    NUMBER          shift and go to state 47
+    PHRASE          shift and go to state 48
 
 
 state 28
 
-    (26) view_tasks -> VIEW_TASKS . NUMBER
-
-    NUMBER          shift and go to state 48
-
-
-state 29
-
-    (27) view_brainstorm -> VIEW_BRAINSTORM . NUMBER
+    (26) view_members -> VIEW_MEMBERS . NUMBER
 
     NUMBER          shift and go to state 49
 
 
-state 30
+state 29
 
-    (28) view_schedule -> VIEW_SCHEDULE . NUMBER
+    (27) view_tasks -> VIEW_TASKS . NUMBER
 
     NUMBER          shift and go to state 50
 
 
-state 31
+state 30
 
-    (29) view_today -> LIST_TODAY . NUMBER
+    (28) view_brainstorm -> VIEW_BRAINSTORM . NUMBER
 
     NUMBER          shift and go to state 51
 
 
-state 32
+state 31
 
-    (30) view_week -> LIST_WEEK . NUMBER
+    (29) view_schedule -> VIEW_SCHEDULE . NUMBER
 
     NUMBER          shift and go to state 52
 
 
-state 33
+state 32
 
-    (31) view_overdue -> LIST_OVERDUE . NUMBER
+    (30) view_today -> LIST_TODAY . NUMBER
 
     NUMBER          shift and go to state 53
 
 
-state 34
+state 33
 
-    (32) delete_member -> DELETE_MEMBER . NUMBER NUMBER
+    (31) view_week -> LIST_WEEK . NUMBER
 
     NUMBER          shift and go to state 54
 
 
-state 35
+state 34
 
-    (33) delete_task -> DELETE_TASK . NUMBER NUMBER
+    (32) view_overdue -> LIST_OVERDUE . NUMBER
 
     NUMBER          shift and go to state 55
 
 
-state 36
+state 35
 
-    (34) complete_task -> COMPLETED_TASK . NUMBER NUMBER
+    (33) delete_member -> DELETE_MEMBER . NUMBER NUMBER
 
     NUMBER          shift and go to state 56
 
 
-state 37
+state 36
 
-    (36) edit_task -> EDIT_TASK . NUMBER DATE DATE NUMBER
+    (34) delete_task -> DELETE_TASK . NUMBER NUMBER
 
     NUMBER          shift and go to state 57
 
 
-state 38
+state 37
 
-    (37) assign_task -> ASSIGN_TASK . NUMBER NUMBER NUMBER
+    (35) complete_task -> COMPLETED_TASK . NUMBER NUMBER
 
     NUMBER          shift and go to state 58
 
 
-state 39
+state 38
 
-    (38) generate_project -> GENERATE_PROJECT . NUMBER
+    (37) edit_task -> EDIT_TASK . NUMBER DATE DATE NUMBER
 
     NUMBER          shift and go to state 59
 
 
+state 39
+
+    (38) assign_task -> ASSIGN_TASK . NUMBER NUMBER NUMBER
+
+    NUMBER          shift and go to state 60
+
+
 state 40
 
-    (39) generate_pie -> GENERATE_PIE . NAMELIST NUMBERLIST
+    (39) generate_project -> GENERATE_PROJECT . NUMBER
 
-    NAMELIST        shift and go to state 60
+    NUMBER          shift and go to state 61
 
 
 state 41
 
-    (40) generate_bar -> GENERATE_BAR . NAMELIST NUMBERLIST
+    (40) generate_pie -> GENERATE_PIE . NAMELIST NUMBERLIST
 
-    NAMELIST        shift and go to state 61
+    NAMELIST        shift and go to state 62
 
 
 state 42
 
-    (21) create_project -> NEW_PROJECT PHRASE .
+    (41) generate_bar -> GENERATE_BAR . NAMELIST NUMBERLIST
 
-    $end            reduce using rule 21 (create_project -> NEW_PROJECT PHRASE .)
+    NAMELIST        shift and go to state 63
 
 
 state 43
 
-    (22) add_member -> ADD_MEMBER PHRASE . NUMBER
+    (42) generate_line -> GENERATE_LINE . LBRK PHRASE RBRK LBRK PHRASE RBRK NUMBERLIST NUMBERLIST
 
-    NUMBER          shift and go to state 62
+    LBRK            shift and go to state 64
 
 
 state 44
 
-    (23) add_brainstorm -> CREATE_BRAINSTORM PHRASE . NUMBER
+    (22) create_project -> NEW_PROJECT PHRASE .
 
-    NUMBER          shift and go to state 63
+    $end            reduce using rule 22 (create_project -> NEW_PROJECT PHRASE .)
 
 
 state 45
 
-    (24) add_idea -> ADD_IDEA PHRASE . NUMBER
+    (23) add_member -> ADD_MEMBER PHRASE . NUMBER
 
-    NUMBER          shift and go to state 64
+    NUMBER          shift and go to state 65
 
 
 state 46
 
-    (35) add_task -> ADD_TASK PHRASE . DATE DATE NUMBER
-
-    DATE            shift and go to state 65
-
-
-state 47
-
-    (25) view_members -> VIEW_MEMBERS NUMBER .
-
-    $end            reduce using rule 25 (view_members -> VIEW_MEMBERS NUMBER .)
-
-
-state 48
-
-    (26) view_tasks -> VIEW_TASKS NUMBER .
-
-    $end            reduce using rule 26 (view_tasks -> VIEW_TASKS NUMBER .)
-
-
-state 49
-
-    (27) view_brainstorm -> VIEW_BRAINSTORM NUMBER .
-
-    $end            reduce using rule 27 (view_brainstorm -> VIEW_BRAINSTORM NUMBER .)
-
-
-state 50
-
-    (28) view_schedule -> VIEW_SCHEDULE NUMBER .
-
-    $end            reduce using rule 28 (view_schedule -> VIEW_SCHEDULE NUMBER .)
-
-
-state 51
-
-    (29) view_today -> LIST_TODAY NUMBER .
-
-    $end            reduce using rule 29 (view_today -> LIST_TODAY NUMBER .)
-
-
-state 52
-
-    (30) view_week -> LIST_WEEK NUMBER .
-
-    $end            reduce using rule 30 (view_week -> LIST_WEEK NUMBER .)
-
-
-state 53
-
-    (31) view_overdue -> LIST_OVERDUE NUMBER .
-
-    $end            reduce using rule 31 (view_overdue -> LIST_OVERDUE NUMBER .)
-
-
-state 54
-
-    (32) delete_member -> DELETE_MEMBER NUMBER . NUMBER
+    (24) add_brainstorm -> CREATE_BRAINSTORM PHRASE . NUMBER
 
     NUMBER          shift and go to state 66
 
 
-state 55
+state 47
 
-    (33) delete_task -> DELETE_TASK NUMBER . NUMBER
+    (25) add_idea -> ADD_IDEA PHRASE . NUMBER
 
     NUMBER          shift and go to state 67
 
 
+state 48
+
+    (36) add_task -> ADD_TASK PHRASE . DATE DATE NUMBER
+
+    DATE            shift and go to state 68
+
+
+state 49
+
+    (26) view_members -> VIEW_MEMBERS NUMBER .
+
+    $end            reduce using rule 26 (view_members -> VIEW_MEMBERS NUMBER .)
+
+
+state 50
+
+    (27) view_tasks -> VIEW_TASKS NUMBER .
+
+    $end            reduce using rule 27 (view_tasks -> VIEW_TASKS NUMBER .)
+
+
+state 51
+
+    (28) view_brainstorm -> VIEW_BRAINSTORM NUMBER .
+
+    $end            reduce using rule 28 (view_brainstorm -> VIEW_BRAINSTORM NUMBER .)
+
+
+state 52
+
+    (29) view_schedule -> VIEW_SCHEDULE NUMBER .
+
+    $end            reduce using rule 29 (view_schedule -> VIEW_SCHEDULE NUMBER .)
+
+
+state 53
+
+    (30) view_today -> LIST_TODAY NUMBER .
+
+    $end            reduce using rule 30 (view_today -> LIST_TODAY NUMBER .)
+
+
+state 54
+
+    (31) view_week -> LIST_WEEK NUMBER .
+
+    $end            reduce using rule 31 (view_week -> LIST_WEEK NUMBER .)
+
+
+state 55
+
+    (32) view_overdue -> LIST_OVERDUE NUMBER .
+
+    $end            reduce using rule 32 (view_overdue -> LIST_OVERDUE NUMBER .)
+
+
 state 56
 
-    (34) complete_task -> COMPLETED_TASK NUMBER . NUMBER
+    (33) delete_member -> DELETE_MEMBER NUMBER . NUMBER
 
-    NUMBER          shift and go to state 68
+    NUMBER          shift and go to state 69
 
 
 state 57
 
-    (36) edit_task -> EDIT_TASK NUMBER . DATE DATE NUMBER
-
-    DATE            shift and go to state 69
-
-
-state 58
-
-    (37) assign_task -> ASSIGN_TASK NUMBER . NUMBER NUMBER
+    (34) delete_task -> DELETE_TASK NUMBER . NUMBER
 
     NUMBER          shift and go to state 70
 
 
+state 58
+
+    (35) complete_task -> COMPLETED_TASK NUMBER . NUMBER
+
+    NUMBER          shift and go to state 71
+
+
 state 59
 
-    (38) generate_project -> GENERATE_PROJECT NUMBER .
+    (37) edit_task -> EDIT_TASK NUMBER . DATE DATE NUMBER
 
-    $end            reduce using rule 38 (generate_project -> GENERATE_PROJECT NUMBER .)
+    DATE            shift and go to state 72
 
 
 state 60
 
-    (39) generate_pie -> GENERATE_PIE NAMELIST . NUMBERLIST
+    (38) assign_task -> ASSIGN_TASK NUMBER . NUMBER NUMBER
 
-    NUMBERLIST      shift and go to state 71
+    NUMBER          shift and go to state 73
 
 
 state 61
 
-    (40) generate_bar -> GENERATE_BAR NAMELIST . NUMBERLIST
+    (39) generate_project -> GENERATE_PROJECT NUMBER .
 
-    NUMBERLIST      shift and go to state 72
+    $end            reduce using rule 39 (generate_project -> GENERATE_PROJECT NUMBER .)
 
 
 state 62
 
-    (22) add_member -> ADD_MEMBER PHRASE NUMBER .
+    (40) generate_pie -> GENERATE_PIE NAMELIST . NUMBERLIST
 
-    $end            reduce using rule 22 (add_member -> ADD_MEMBER PHRASE NUMBER .)
+    NUMBERLIST      shift and go to state 74
 
 
 state 63
 
-    (23) add_brainstorm -> CREATE_BRAINSTORM PHRASE NUMBER .
+    (41) generate_bar -> GENERATE_BAR NAMELIST . NUMBERLIST
 
-    $end            reduce using rule 23 (add_brainstorm -> CREATE_BRAINSTORM PHRASE NUMBER .)
+    NUMBERLIST      shift and go to state 75
 
 
 state 64
 
-    (24) add_idea -> ADD_IDEA PHRASE NUMBER .
+    (42) generate_line -> GENERATE_LINE LBRK . PHRASE RBRK LBRK PHRASE RBRK NUMBERLIST NUMBERLIST
 
-    $end            reduce using rule 24 (add_idea -> ADD_IDEA PHRASE NUMBER .)
+    PHRASE          shift and go to state 76
 
 
 state 65
 
-    (35) add_task -> ADD_TASK PHRASE DATE . DATE NUMBER
+    (23) add_member -> ADD_MEMBER PHRASE NUMBER .
 
-    DATE            shift and go to state 73
+    $end            reduce using rule 23 (add_member -> ADD_MEMBER PHRASE NUMBER .)
 
 
 state 66
 
-    (32) delete_member -> DELETE_MEMBER NUMBER NUMBER .
+    (24) add_brainstorm -> CREATE_BRAINSTORM PHRASE NUMBER .
 
-    $end            reduce using rule 32 (delete_member -> DELETE_MEMBER NUMBER NUMBER .)
+    $end            reduce using rule 24 (add_brainstorm -> CREATE_BRAINSTORM PHRASE NUMBER .)
 
 
 state 67
 
-    (33) delete_task -> DELETE_TASK NUMBER NUMBER .
+    (25) add_idea -> ADD_IDEA PHRASE NUMBER .
 
-    $end            reduce using rule 33 (delete_task -> DELETE_TASK NUMBER NUMBER .)
+    $end            reduce using rule 25 (add_idea -> ADD_IDEA PHRASE NUMBER .)
 
 
 state 68
 
-    (34) complete_task -> COMPLETED_TASK NUMBER NUMBER .
+    (36) add_task -> ADD_TASK PHRASE DATE . DATE NUMBER
 
-    $end            reduce using rule 34 (complete_task -> COMPLETED_TASK NUMBER NUMBER .)
+    DATE            shift and go to state 77
 
 
 state 69
 
-    (36) edit_task -> EDIT_TASK NUMBER DATE . DATE NUMBER
+    (33) delete_member -> DELETE_MEMBER NUMBER NUMBER .
 
-    DATE            shift and go to state 74
+    $end            reduce using rule 33 (delete_member -> DELETE_MEMBER NUMBER NUMBER .)
 
 
 state 70
 
-    (37) assign_task -> ASSIGN_TASK NUMBER NUMBER . NUMBER
+    (34) delete_task -> DELETE_TASK NUMBER NUMBER .
 
-    NUMBER          shift and go to state 75
+    $end            reduce using rule 34 (delete_task -> DELETE_TASK NUMBER NUMBER .)
 
 
 state 71
 
-    (39) generate_pie -> GENERATE_PIE NAMELIST NUMBERLIST .
+    (35) complete_task -> COMPLETED_TASK NUMBER NUMBER .
 
-    $end            reduce using rule 39 (generate_pie -> GENERATE_PIE NAMELIST NUMBERLIST .)
+    $end            reduce using rule 35 (complete_task -> COMPLETED_TASK NUMBER NUMBER .)
 
 
 state 72
 
-    (40) generate_bar -> GENERATE_BAR NAMELIST NUMBERLIST .
+    (37) edit_task -> EDIT_TASK NUMBER DATE . DATE NUMBER
 
-    $end            reduce using rule 40 (generate_bar -> GENERATE_BAR NAMELIST NUMBERLIST .)
+    DATE            shift and go to state 78
 
 
 state 73
 
-    (35) add_task -> ADD_TASK PHRASE DATE DATE . NUMBER
+    (38) assign_task -> ASSIGN_TASK NUMBER NUMBER . NUMBER
 
-    NUMBER          shift and go to state 76
+    NUMBER          shift and go to state 79
 
 
 state 74
 
-    (36) edit_task -> EDIT_TASK NUMBER DATE DATE . NUMBER
+    (40) generate_pie -> GENERATE_PIE NAMELIST NUMBERLIST .
 
-    NUMBER          shift and go to state 77
+    $end            reduce using rule 40 (generate_pie -> GENERATE_PIE NAMELIST NUMBERLIST .)
 
 
 state 75
 
-    (37) assign_task -> ASSIGN_TASK NUMBER NUMBER NUMBER .
+    (41) generate_bar -> GENERATE_BAR NAMELIST NUMBERLIST .
 
-    $end            reduce using rule 37 (assign_task -> ASSIGN_TASK NUMBER NUMBER NUMBER .)
+    $end            reduce using rule 41 (generate_bar -> GENERATE_BAR NAMELIST NUMBERLIST .)
 
 
 state 76
 
-    (35) add_task -> ADD_TASK PHRASE DATE DATE NUMBER .
+    (42) generate_line -> GENERATE_LINE LBRK PHRASE . RBRK LBRK PHRASE RBRK NUMBERLIST NUMBERLIST
 
-    $end            reduce using rule 35 (add_task -> ADD_TASK PHRASE DATE DATE NUMBER .)
+    RBRK            shift and go to state 80
 
 
 state 77
 
-    (36) edit_task -> EDIT_TASK NUMBER DATE DATE NUMBER .
+    (36) add_task -> ADD_TASK PHRASE DATE DATE . NUMBER
 
-    $end            reduce using rule 36 (edit_task -> EDIT_TASK NUMBER DATE DATE NUMBER .)
+    NUMBER          shift and go to state 81
+
+
+state 78
+
+    (37) edit_task -> EDIT_TASK NUMBER DATE DATE . NUMBER
+
+    NUMBER          shift and go to state 82
+
+
+state 79
+
+    (38) assign_task -> ASSIGN_TASK NUMBER NUMBER NUMBER .
+
+    $end            reduce using rule 38 (assign_task -> ASSIGN_TASK NUMBER NUMBER NUMBER .)
+
+
+state 80
+
+    (42) generate_line -> GENERATE_LINE LBRK PHRASE RBRK . LBRK PHRASE RBRK NUMBERLIST NUMBERLIST
+
+    LBRK            shift and go to state 83
+
+
+state 81
+
+    (36) add_task -> ADD_TASK PHRASE DATE DATE NUMBER .
+
+    $end            reduce using rule 36 (add_task -> ADD_TASK PHRASE DATE DATE NUMBER .)
+
+
+state 82
+
+    (37) edit_task -> EDIT_TASK NUMBER DATE DATE NUMBER .
+
+    $end            reduce using rule 37 (edit_task -> EDIT_TASK NUMBER DATE DATE NUMBER .)
+
+
+state 83
+
+    (42) generate_line -> GENERATE_LINE LBRK PHRASE RBRK LBRK . PHRASE RBRK NUMBERLIST NUMBERLIST
+
+    PHRASE          shift and go to state 84
+
+
+state 84
+
+    (42) generate_line -> GENERATE_LINE LBRK PHRASE RBRK LBRK PHRASE . RBRK NUMBERLIST NUMBERLIST
+
+    RBRK            shift and go to state 85
+
+
+state 85
+
+    (42) generate_line -> GENERATE_LINE LBRK PHRASE RBRK LBRK PHRASE RBRK . NUMBERLIST NUMBERLIST
+
+    NUMBERLIST      shift and go to state 86
+
+
+state 86
+
+    (42) generate_line -> GENERATE_LINE LBRK PHRASE RBRK LBRK PHRASE RBRK NUMBERLIST . NUMBERLIST
+
+    NUMBERLIST      shift and go to state 87
+
+
+state 87
+
+    (42) generate_line -> GENERATE_LINE LBRK PHRASE RBRK LBRK PHRASE RBRK NUMBERLIST NUMBERLIST .
+
+    $end            reduce using rule 42 (generate_line -> GENERATE_LINE LBRK PHRASE RBRK LBRK PHRASE RBRK NUMBERLIST NUMBERLIST .)
 
