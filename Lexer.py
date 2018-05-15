@@ -36,8 +36,7 @@ tokens = ["NAME",
           "NUMBERLIST",
           "NAMELIST",
           'LPAREN', 'RPAREN', 'COMMA',
-          "COMMAND"] \
-         + list(reserved.values())
+          "ID"] + list(reserved.values())
 
 # Simple Regular Expressions
 t_ignore = ' \t'
@@ -48,8 +47,14 @@ t_NUMBER = r'[\d+]+'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_COMMA = r'\,'
-t_COMMAND = r'[a-zA-Z]+_[a-zA-Z]+'
+#t_COMMAND = r'[a-zA-Z]+_[a-zA-Z]+'
 ## NEED regular expression to accept characters and spaces - for tasks
+
+# Define a rule for reserved words
+def t_ID(t):
+    r'[a-zA-Z]+_[a-zA-Z]+'
+    t.type = reserved.get(t.value, 'ID')  # Check for reserved words
+    return t
 
 #date format: 2012-02-20 -- year-month-day
 #t_DATE = r'\d+-\d+-\d+'
@@ -81,13 +86,13 @@ lexer = lex.lex()
 
 # Test it out
 data0 = '''graph_data (woo,goo,joo) (12,-14,16)'''
-data1 = '''new_member member Name project Name'''
+data1 = '''new_project member Name project Name'''
 data2 = '''delete_member @member  project Name'''
 data3 = '''create_brainstorm brainstorn Name '''
 #data1 = 2012-02-20 2012-02-26
 
 # Give the lexer some input
-lexer.input(data0)
+lexer.input(data1)
 
 # Tokenize
 while True:

@@ -68,8 +68,6 @@ class Project:
         self.tasks = []
         self.users = []
         self.bs = None
-        #self.total_users = 0
-        #self.total_tasks = 0
 
     def get_pid(self):
         return self.id
@@ -90,8 +88,6 @@ class Project:
         brainstorm = self.bs
         if brainstorm is not None:
             print("Generating diagram...")
-            #print(brainstorm.title)
-            #print(brainstorm.ideas)
             arr1 = []
             arr2 = []
             arr1.append(brainstorm.title)
@@ -129,18 +125,13 @@ class Project:
 
 
     def new_task(self, task, start_date, end_date):
-        #Validate dates
-        #print('estoy en new_task')
         try:
-            #print('estoy dentro del try')
             start_obj = datetime.strptime(start_date, '%d-%m-%Y')
             end_obj = datetime.strptime(end_date, '%d-%m-%Y')
-            #status = False
             self.tasks.append(Task(task, start_date, end_date))
-            #self.total_tasks += 1
-            #print('Task was added: ' + task + ', ' + start_date + ', ' + end_date)
+            print("New task added")
         except ValueError:
-            print("date not valid")
+            print("Date entered is not valid")
 
 
     def _find_task(self, task_id):
@@ -155,37 +146,35 @@ class Project:
                 return user
         return None
 
-    def edit_task(self, task_id, start_date, end_date):
-        print('estoy en el edit')
+def edit_task(self, task_id, start_date, end_date):
+
         task = self._find_task(task_id)
-        start_obj = datetime.strptime(start_date, '%d-%m-%Y')
-        end_obj = datetime.strptime(end_date, '%d-%m-%Y')
-        if task is not None:
-            task.start_date = start_date
-            task.end_date = end_date
-            #return True
-        else:
-            print("Task with ID:" + str(task_id) + " was not found.")
+        try:
+            start_obj = datetime.strptime(start_date, '%d-%m-%Y')
+            end_obj = datetime.strptime(end_date, '%d-%m-%Y')
+            if task is not None:
+                task.start_date = start_date
+                task.end_date = end_date
+                print("Task dates edited.")
+            else:
+                print("Task with ID:" + str(task_id) + " was not found.")
+        except ValueError:
+            print("Date entered is not valid")
 
     def assign_task(self, task_id, member_id):
-        print('estoy en el edit')
         task = self._find_task(task_id)
         if task is not None:
-            member = self._find_user(member_id)
-            if member is not None:
-                task.assigned_to = member_id
-            else:
-                print("Member with ID:" + str(member_id) + " was not found.")
-            #return True
+            task.assigned_to = member_id
+            print("Task assigned to member with ID:" + str(member_id))
         else:
             print("Task with ID:" + str(task_id) + " was not found.")
-
 
     def show_tasks(self, tasks=None):
         if not tasks:
             tasks = self.tasks
-        for task in tasks:
             print("Showing all tasks... \n")
+        for task in tasks:
+
             print("{0}: {3} [Start Date: {1}, End Date: {2}] [Done?: {4}] [Member id: {5}]\n".format(
                 task.id, task.start_date, task.end_date, task.task, task.status, task.assigned_to))
 
@@ -199,8 +188,9 @@ class Project:
                 today_tasks.append(task)
 
         if len(today_tasks) > 0:
+            print("Showing tasks for today... \n")
             for task in today_tasks:
-                print("Showing tasks for today... \n")
+
                 print("{0}: {3} [Start Date: {1}, End Date: {2}] [Done?: {4}] [Member id: {5}]\n".format(
                 task.id, task.start_date, task.end_date, task.task, task.status, task.assigned_to))
         else:
@@ -217,8 +207,9 @@ class Project:
                 week_tasks.append(task)
 
         if len(week_tasks) > 0:
+            print("Showing tasks for this week... \n")
             for task in week_tasks:
-                print("Showing tasks for this week... \n")
+
                 print("{0}: {3} [Start Date: {1}, End Date: {2}] [Done?: {4}] [Member id: {5}]\n".format(
                 task.id, task.start_date, task.end_date, task.task, task.status, task.assigned_to))
         else:
@@ -235,35 +226,26 @@ class Project:
                 overdue_tasks.append(task)
 
         if len(overdue_tasks) > 0:
+            print("Showing overdue tasks... \n")
             for task in overdue_tasks:
-                print("Showing overdue tasks... \n")
+
                 print("{0}: {3} [Start Date: {1}, End Date: {2}] [Done?: {4}] [Member id: {5}]\n".format(
                 task.id, task.start_date, task.end_date, task.task, task.status, task.assigned_to))
         else:
             print("No overdue tasks.\n")
 
-    def complete_task(self, task_id): #change task status to 1 (completed)
-        #pass
+
+
+    def complete_task(self, task_id):
         task = self._find_task(task_id)
         if task is not None:
             task.status = True
-            #return True
-        #return False
+            print("Task with ID:"+ str(task_id) + " marked as completed.")
         else:
             print("Task with ID:" + str(task_id) + " was not found.")
-
-        def assign_task(self, task_id, member_id):  # change task status to 1 (completed)
-            # pass
-            task = self._find_task(task_id)
-            if task is not None:
-                task.assigned_to = member_id
-                # return True
-            # return False
-            else:
-                print("Task with ID:" + str(task_id) + " was not found.")
-
     def generate_project(self, pid):
         file = open(self.name + '.txt', 'w')
+        print ('Project text Generated')
         file.close()
         with open(self.name +'.txt', 'w') as f:
             f.write('--------------GENERATE_PROJECT--------------\n\n')
@@ -285,35 +267,25 @@ class Project:
             f.close()
 
 
-    def get_task_status(task_id):
-        pass
 
     def new_user(self, name):
         self.users.append(User(name))
-        #self.total_users += 1
-        print('User was added: ' + name)
+        print('User was added: ' + str(name))
 
-    def edit_user(user_id, user_name):
-        pass
     def delete_user(self, user_id):
-        #pass
         user = self._find_user(user_id)
         if user is not None:
             print("User with ID:" + str(user_id) + " was found.")
             self.users.remove(user)
-            #self.total_users -= 1
             print("User removed...")
-
         else:
             print("User with ID:" + str(user_id) + " was not found.")
 
     def delete_task(self, task_id):
-        #pass
         task = self._find_task(task_id)
         if task is not None:
             print("Task with ID:" + str(task_id) + " was found.")
             self.tasks.remove(task)
-            #self.total_tasks -= 1
             print("Task removed...")
         else:
             print("Task with ID:" + str(task_id) + " was not found.")
@@ -321,6 +293,7 @@ class Project:
     def show_users(self, users=None):
         if not users:
             users = self.users
+            print("Showing all users... \n")
         for user in users:
             print("{0}: {1}".format(user.id, user.name))
 
@@ -565,7 +538,6 @@ def generate_project (pid):
         with open(file, 'rb') as input:
             proj = pickle.load(input)
             proj.generate_project(pid)
-            print ('Project text Generated')
     except FileNotFoundError:
             print("ERROR: No projects created with pid="+str(pid))
 

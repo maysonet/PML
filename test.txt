@@ -1,0 +1,13 @@
+--------------GENERATE_PROJECT--------------
+
+Project Name : test
+
+Project Id : 1
+
+Project Members : 
+1: chris 
+2: christian 
+
+Project Tasks : 
+1: tee  [Start Date: 01-01-2012, End Date: 01-04-2012] [Done?: False] [Member id: None]
+

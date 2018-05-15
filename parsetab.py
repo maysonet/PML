@@ -8,7 +8,7 @@ _lr_method = 'LALR'
 
 _lr_signature = 'ADD_IDEA ADD_MEMBER ADD_TASK ASSIGN_TASK COMMA COMMAND COMPLETED_TASK CREATE_BRAINSTORM CREATE_GRAPH DATE DELETE_IDEA DELETE_MEMBER DELETE_TASK EDIT_TASK GENERATE_PROJECT GRAPH_AXIS GRAPH_DATA GRAPH_TYPE LIST_OVERDUE LIST_TODAY LIST_WEEK LPAREN NAME NAMELIST NEW_PROJECT NUMBER NUMBERLIST PHRASE RPAREN USERNAME VIEW_BRAINSTORM VIEW_MEMBERS VIEW_SCHEDULE VIEW_TASKS\n    statement : command PHRASE\n                | command PHRASE DATE DATE NUMBER\n                | command NUMBER DATE DATE NUMBER\n                | command PHRASE NUMBER\n                | command NUMBER\n                | command NUMBER NUMBER\n                | command NUMBER NUMBER NUMBER\n    \n    command : COMMAND\n    '
     
-_lr_action_items = {'PHRASE':([2,3,],[-8,5,]),'NUMBER':([2,3,4,5,6,11,12,],[-8,4,6,8,10,13,14,]),'$end':([1,4,5,6,8,10,13,14,],[0,-5,-1,-6,-4,-7,-3,-2,]),'COMMAND':([0,],[2,]),'DATE':([4,5,7,9,],[7,9,11,12,]),}
+_lr_action_items = {'COMMAND':([0,],[3,]),'$end':([1,4,5,7,8,11,13,14,],[0,-1,-5,-4,-6,-7,-2,-3,]),'PHRASE':([2,3,],[4,-8,]),'NUMBER':([2,3,4,5,8,10,12,],[5,-8,7,8,11,13,14,]),'DATE':([4,5,6,9,],[6,9,10,12,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'command':([0,],[3,]),'statement':([0,],[1,]),}
+_lr_goto_items = {'statement':([0,],[1,]),'command':([0,],[2,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -34,5 +34,5 @@ _lr_productions = [
   ('statement -> command NUMBER','statement',2,'p_statement','Parser.py',13),
   ('statement -> command NUMBER NUMBER','statement',3,'p_statement','Parser.py',14),
   ('statement -> command NUMBER NUMBER NUMBER','statement',4,'p_statement','Parser.py',15),
-  ('command -> COMMAND','command',1,'p_command','Parser.py',81),
+  ('command -> COMMAND','command',1,'p_command','Parser.py',94),
 ]
