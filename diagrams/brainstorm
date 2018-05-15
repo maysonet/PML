@@ -1,7 +1,9 @@
 digraph {
-	"main topic "
-	"idea "
-	"geo "
-	"main topic " -> "idea "
-	"main topic " -> "geo "
+	"diesel management "
+	"use wifi for comm "
+	"use GSM module "
+	"put sensors for data extraction "
+	"diesel management " -> "use wifi for comm "
+	"diesel management " -> "use GSM module "
+	"diesel management " -> "put sensors for data extraction "
 }

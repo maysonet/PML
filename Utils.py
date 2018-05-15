@@ -503,7 +503,6 @@ def edit_task(taskid, start_date, end_date, pid):
             print("ERROR: No projects created with pid="+str(pid))
 
 def assign_task(taskid, memberid, pid):
-    print ('primer edit')
     file = get_filename(pid)
     try:
         #Load project data

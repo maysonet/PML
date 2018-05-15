@@ -1,0 +1,19 @@
+--------------GENERATE_PROJECT--------------
+
+Project Name : micro
+
+Project Id : 1
+
+Project Members : 
+1: eric 
+2: jan 
+3: luis 
+4: manuel 
+
+Project Tasks : 
+1: visit sites  [Start Date: 01-01-2011, End Date: 02-02-2012] [Done?: True] [Member id: 1]
+
+2: design power supply  [Start Date: 01-01-2011, End Date: 02-02-2012] [Done?: False] [Member id: 2]
+
+3: design user interface  [Start Date: 01-01-2011, End Date: 02-02-2012] [Done?: False] [Member id: 3]
+
