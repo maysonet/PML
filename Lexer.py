@@ -8,23 +8,21 @@ reserved = {
     'view_members' : 'VIEW_MEMBERS', #Done
     'create_brainstorm':'CREATE_BRAINSTORM', #Done
     'add_idea':'ADD_IDEA', #Done
-    'delete_idea':'DELETE_IDEA', #No esta en la lista
     'add_task': 'ADD_TASK', #Done
     'edit_task': 'EDIT_TASK', #Done
     'delete_task': 'DELETE_TASK', #Done
     'completed_task': 'COMPLETED_TASK', #Done
     'assign_task': 'ASSIGN_TASK', #Done
-    'create_graph': 'CREATE_GRAPH', # Mikael
-    'graph_type':'GRAPH_TYPE', # Mikael
-    'graph_axis':'GRAPH_AXIS', # Mikael
-    'graph_data' : 'GRAPH_DATA', # Mikael
     'view_brainstorm':'VIEW_BRAINSTORM', #Done
     'view_schedule': 'VIEW_SCHEDULE', #Done
     'view_tasks' : 'VIEW_TASKS', #Done
     'list_today' : 'LIST_TODAY', #Done
     'list_week' : 'LIST_WEEK', #Done
     'list_overdue' : 'LIST_OVERDUE', #Done
-    'generate_project' : 'GENERATE_PROJECT' #Done
+    'generate_project' : 'GENERATE_PROJECT', #Done
+    'generate_pie' : 'GENERATE_PIE',
+    'generate_bar' : 'GENERATE_BAR',
+    'generate_line' : 'GENERATE_LINE'
 }
 
 # Tokens

@@ -24,6 +24,9 @@ def p_statement(p):
             | edit_task
             | assign_task
             | generate_project
+            | generate_pie
+            | generate_bar
+
 
 
     """
@@ -156,6 +159,19 @@ def p_generate_project(p):
     # generate_project <<project_id>>
     Utils.generate_project(p[2])
 
+def p_generate_pie(p):
+    """
+    generate_pie : GENERATE_PIE NAMELIST NUMBERLIST
+    """
+    # generate_project <<project_id>>
+    Utils.generate_pie(p[2], p[3])
+
+def p_generate_bar(p):
+    """
+    generate_bar : GENERATE_BAR NAMELIST NUMBERLIST
+    """
+    # generate_project <<project_id>>
+    Utils.generate_bar(p[2], p[3])
 
 def p_error(p):
     if p:

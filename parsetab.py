@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ADD_IDEA ADD_MEMBER ADD_TASK ASSIGN_TASK COMMA COMPLETED_TASK CREATE_BRAINSTORM CREATE_GRAPH DATE DELETE_IDEA DELETE_MEMBER DELETE_TASK EDIT_TASK GENERATE_PROJECT GRAPH_AXIS GRAPH_DATA GRAPH_TYPE ID LIST_OVERDUE LIST_TODAY LIST_WEEK LPAREN NAME NAMELIST NEW_PROJECT NUMBER NUMBERLIST PHRASE RPAREN USERNAME VIEW_BRAINSTORM VIEW_MEMBERS VIEW_SCHEDULE VIEW_TASKS\n    statement : create_project\n            | add_member\n            | add_brainstorm\n            | add_idea\n            | add_task\n            | view_members\n            | view_tasks\n            | view_brainstorm\n            | view_schedule\n            | view_today\n            | view_week\n            | view_overdue\n            | delete_member\n            | delete_task\n            | complete_task\n            | edit_task\n            | assign_task\n            | generate_project\n\n\n    create_project : NEW_PROJECT PHRASE\n    add_member : ADD_MEMBER PHRASE NUMBER\n    \n    add_brainstorm : CREATE_BRAINSTORM PHRASE NUMBER\n    \n    add_idea : ADD_IDEA PHRASE NUMBER\n    \n    view_members : VIEW_MEMBERS NUMBER\n    \n    view_tasks : VIEW_TASKS NUMBER\n    \n    view_brainstorm : VIEW_BRAINSTORM NUMBER\n    \n    view_schedule : VIEW_SCHEDULE NUMBER\n    \n    view_today : LIST_TODAY NUMBER\n    \n    view_week : LIST_WEEK NUMBER\n    \n    view_overdue : LIST_OVERDUE NUMBER\n    \n    delete_member : DELETE_MEMBER NUMBER NUMBER\n    \n    delete_task : DELETE_TASK NUMBER NUMBER\n    \n    complete_task : COMPLETED_TASK NUMBER NUMBER\n    \n    add_task : ADD_TASK PHRASE DATE DATE NUMBER\n    \n    edit_task : EDIT_TASK NUMBER DATE DATE NUMBER\n    \n    assign_task : ASSIGN_TASK NUMBER NUMBER NUMBER\n    \n    generate_project : GENERATE_PROJECT NUMBER\n    '
+_lr_signature = 'ADD_IDEA ADD_MEMBER ADD_TASK ASSIGN_TASK COMMA COMPLETED_TASK CREATE_BRAINSTORM DATE DELETE_MEMBER DELETE_TASK EDIT_TASK GENERATE_BAR GENERATE_LINE GENERATE_PIE GENERATE_PROJECT ID LIST_OVERDUE LIST_TODAY LIST_WEEK LPAREN NAME NAMELIST NEW_PROJECT NUMBER NUMBERLIST PHRASE RPAREN USERNAME VIEW_BRAINSTORM VIEW_MEMBERS VIEW_SCHEDULE VIEW_TASKS\n    statement : create_project\n            | add_member\n            | add_brainstorm\n            | add_idea\n            | add_task\n            | view_members\n            | view_tasks\n            | view_brainstorm\n            | view_schedule\n            | view_today\n            | view_week\n            | view_overdue\n            | delete_member\n            | delete_task\n            | complete_task\n            | edit_task\n            | assign_task\n            | generate_project\n            | generate_pie\n            | generate_bar\n\n\n\n    create_project : NEW_PROJECT PHRASE\n    add_member : ADD_MEMBER PHRASE NUMBER\n    \n    add_brainstorm : CREATE_BRAINSTORM PHRASE NUMBER\n    \n    add_idea : ADD_IDEA PHRASE NUMBER\n    \n    view_members : VIEW_MEMBERS NUMBER\n    \n    view_tasks : VIEW_TASKS NUMBER\n    \n    view_brainstorm : VIEW_BRAINSTORM NUMBER\n    \n    view_schedule : VIEW_SCHEDULE NUMBER\n    \n    view_today : LIST_TODAY NUMBER\n    \n    view_week : LIST_WEEK NUMBER\n    \n    view_overdue : LIST_OVERDUE NUMBER\n    \n    delete_member : DELETE_MEMBER NUMBER NUMBER\n    \n    delete_task : DELETE_TASK NUMBER NUMBER\n    \n    complete_task : COMPLETED_TASK NUMBER NUMBER\n    \n    add_task : ADD_TASK PHRASE DATE DATE NUMBER\n    \n    edit_task : EDIT_TASK NUMBER DATE DATE NUMBER\n    \n    assign_task : ASSIGN_TASK NUMBER NUMBER NUMBER\n    \n    generate_project : GENERATE_PROJECT NUMBER\n    \n    generate_pie : GENERATE_PIE NAMELIST NUMBERLIST\n    \n    generate_bar : GENERATE_BAR NAMELIST NUMBERLIST\n    '
     
-_lr_action_items = {'NEW_PROJECT':([0,],[20,]),'ADD_MEMBER':([0,],[21,]),'CREATE_BRAINSTORM':([0,],[22,]),'ADD_IDEA':([0,],[23,]),'ADD_TASK':([0,],[24,]),'VIEW_MEMBERS':([0,],[25,]),'VIEW_TASKS':([0,],[26,]),'VIEW_BRAINSTORM':([0,],[27,]),'VIEW_SCHEDULE':([0,],[28,]),'LIST_TODAY':([0,],[29,]),'LIST_WEEK':([0,],[30,]),'LIST_OVERDUE':([0,],[31,]),'DELETE_MEMBER':([0,],[32,]),'DELETE_TASK':([0,],[33,]),'COMPLETED_TASK':([0,],[34,]),'EDIT_TASK':([0,],[35,]),'ASSIGN_TASK':([0,],[36,]),'GENERATE_PROJECT':([0,],[37,]),'$end':([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,38,43,44,45,46,47,48,49,55,56,57,58,60,61,62,67,68,69,],[0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-23,-24,-25,-26,-27,-28,-29,-36,-20,-21,-22,-30,-31,-32,-35,-33,-34,]),'PHRASE':([20,21,22,23,24,],[38,39,40,41,42,]),'NUMBER':([25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,50,51,52,54,64,65,66,],[43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,60,61,62,64,67,68,69,]),'DATE':([42,53,59,63,],[59,63,65,66,]),}
+_lr_action_items = {'NEW_PROJECT':([0,],[22,]),'ADD_MEMBER':([0,],[23,]),'CREATE_BRAINSTORM':([0,],[24,]),'ADD_IDEA':([0,],[25,]),'ADD_TASK':([0,],[26,]),'VIEW_MEMBERS':([0,],[27,]),'VIEW_TASKS':([0,],[28,]),'VIEW_BRAINSTORM':([0,],[29,]),'VIEW_SCHEDULE':([0,],[30,]),'LIST_TODAY':([0,],[31,]),'LIST_WEEK':([0,],[32,]),'LIST_OVERDUE':([0,],[33,]),'DELETE_MEMBER':([0,],[34,]),'DELETE_TASK':([0,],[35,]),'COMPLETED_TASK':([0,],[36,]),'EDIT_TASK':([0,],[37,]),'ASSIGN_TASK':([0,],[38,]),'GENERATE_PROJECT':([0,],[39,]),'GENERATE_PIE':([0,],[40,]),'GENERATE_BAR':([0,],[41,]),'$end':([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,42,47,48,49,50,51,52,53,59,62,63,64,66,67,68,71,72,75,76,77,],[0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-25,-26,-27,-28,-29,-30,-31,-38,-22,-23,-24,-32,-33,-34,-39,-40,-37,-35,-36,]),'PHRASE':([22,23,24,25,26,],[42,43,44,45,46,]),'NUMBER':([27,28,29,30,31,32,33,34,35,36,37,38,39,43,44,45,54,55,56,58,70,73,74,],[47,48,49,50,51,52,53,54,55,56,57,58,59,62,63,64,66,67,68,70,75,76,77,]),'NAMELIST':([40,41,],[60,61,]),'DATE':([46,57,65,69,],[65,69,73,74,]),'NUMBERLIST':([60,61,],[71,72,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'statement':([0,],[1,]),'create_project':([0,],[2,]),'add_member':([0,],[3,]),'add_brainstorm':([0,],[4,]),'add_idea':([0,],[5,]),'add_task':([0,],[6,]),'view_members':([0,],[7,]),'view_tasks':([0,],[8,]),'view_brainstorm':([0,],[9,]),'view_schedule':([0,],[10,]),'view_today':([0,],[11,]),'view_week':([0,],[12,]),'view_overdue':([0,],[13,]),'delete_member':([0,],[14,]),'delete_task':([0,],[15,]),'complete_task':([0,],[16,]),'edit_task':([0,],[17,]),'assign_task':([0,],[18,]),'generate_project':([0,],[19,]),}
+_lr_goto_items = {'statement':([0,],[1,]),'create_project':([0,],[2,]),'add_member':([0,],[3,]),'add_brainstorm':([0,],[4,]),'add_idea':([0,],[5,]),'add_task':([0,],[6,]),'view_members':([0,],[7,]),'view_tasks':([0,],[8,]),'view_brainstorm':([0,],[9,]),'view_schedule':([0,],[10,]),'view_today':([0,],[11,]),'view_week':([0,],[12,]),'view_overdue':([0,],[13,]),'delete_member':([0,],[14,]),'delete_task':([0,],[15,]),'complete_task':([0,],[16,]),'edit_task':([0,],[17,]),'assign_task':([0,],[18,]),'generate_project':([0,],[19,]),'generate_pie':([0,],[20,]),'generate_bar':([0,],[21,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -45,22 +45,26 @@ _lr_productions = [
   ('statement -> edit_task','statement',1,'p_statement','Parser.py',24),
   ('statement -> assign_task','statement',1,'p_statement','Parser.py',25),
   ('statement -> generate_project','statement',1,'p_statement','Parser.py',26),
-  ('create_project -> NEW_PROJECT PHRASE','create_project',2,'p_create_project','Parser.py',35),
-  ('add_member -> ADD_MEMBER PHRASE NUMBER','add_member',3,'p_add_member','Parser.py',42),
-  ('add_brainstorm -> CREATE_BRAINSTORM PHRASE NUMBER','add_brainstorm',3,'p_add_brainstorm','Parser.py',49),
-  ('add_idea -> ADD_IDEA PHRASE NUMBER','add_idea',3,'p_add_idea','Parser.py',56),
-  ('view_members -> VIEW_MEMBERS NUMBER','view_members',2,'p_view_members','Parser.py',63),
-  ('view_tasks -> VIEW_TASKS NUMBER','view_tasks',2,'p_view_tasks','Parser.py',70),
-  ('view_brainstorm -> VIEW_BRAINSTORM NUMBER','view_brainstorm',2,'p_view_brainstorm','Parser.py',77),
-  ('view_schedule -> VIEW_SCHEDULE NUMBER','view_schedule',2,'p_view_schedule','Parser.py',84),
-  ('view_today -> LIST_TODAY NUMBER','view_today',2,'p_view_today','Parser.py',91),
-  ('view_week -> LIST_WEEK NUMBER','view_week',2,'p_view_week','Parser.py',98),
-  ('view_overdue -> LIST_OVERDUE NUMBER','view_overdue',2,'p_view_overdue','Parser.py',105),
-  ('delete_member -> DELETE_MEMBER NUMBER NUMBER','delete_member',3,'p_delete_member','Parser.py',112),
-  ('delete_task -> DELETE_TASK NUMBER NUMBER','delete_task',3,'p_delete_task','Parser.py',119),
-  ('complete_task -> COMPLETED_TASK NUMBER NUMBER','complete_task',3,'p_complete_task','Parser.py',126),
-  ('add_task -> ADD_TASK PHRASE DATE DATE NUMBER','add_task',5,'p_add_task','Parser.py',133),
-  ('edit_task -> EDIT_TASK NUMBER DATE DATE NUMBER','edit_task',5,'p_edit_task','Parser.py',140),
-  ('assign_task -> ASSIGN_TASK NUMBER NUMBER NUMBER','assign_task',4,'p_assign_task','Parser.py',147),
-  ('generate_project -> GENERATE_PROJECT NUMBER','generate_project',2,'p_generate_project','Parser.py',154),
+  ('statement -> generate_pie','statement',1,'p_statement','Parser.py',27),
+  ('statement -> generate_bar','statement',1,'p_statement','Parser.py',28),
+  ('create_project -> NEW_PROJECT PHRASE','create_project',2,'p_create_project','Parser.py',38),
+  ('add_member -> ADD_MEMBER PHRASE NUMBER','add_member',3,'p_add_member','Parser.py',45),
+  ('add_brainstorm -> CREATE_BRAINSTORM PHRASE NUMBER','add_brainstorm',3,'p_add_brainstorm','Parser.py',52),
+  ('add_idea -> ADD_IDEA PHRASE NUMBER','add_idea',3,'p_add_idea','Parser.py',59),
+  ('view_members -> VIEW_MEMBERS NUMBER','view_members',2,'p_view_members','Parser.py',66),
+  ('view_tasks -> VIEW_TASKS NUMBER','view_tasks',2,'p_view_tasks','Parser.py',73),
+  ('view_brainstorm -> VIEW_BRAINSTORM NUMBER','view_brainstorm',2,'p_view_brainstorm','Parser.py',80),
+  ('view_schedule -> VIEW_SCHEDULE NUMBER','view_schedule',2,'p_view_schedule','Parser.py',87),
+  ('view_today -> LIST_TODAY NUMBER','view_today',2,'p_view_today','Parser.py',94),
+  ('view_week -> LIST_WEEK NUMBER','view_week',2,'p_view_week','Parser.py',101),
+  ('view_overdue -> LIST_OVERDUE NUMBER','view_overdue',2,'p_view_overdue','Parser.py',108),
+  ('delete_member -> DELETE_MEMBER NUMBER NUMBER','delete_member',3,'p_delete_member','Parser.py',115),
+  ('delete_task -> DELETE_TASK NUMBER NUMBER','delete_task',3,'p_delete_task','Parser.py',122),
+  ('complete_task -> COMPLETED_TASK NUMBER NUMBER','complete_task',3,'p_complete_task','Parser.py',129),
+  ('add_task -> ADD_TASK PHRASE DATE DATE NUMBER','add_task',5,'p_add_task','Parser.py',136),
+  ('edit_task -> EDIT_TASK NUMBER DATE DATE NUMBER','edit_task',5,'p_edit_task','Parser.py',143),
+  ('assign_task -> ASSIGN_TASK NUMBER NUMBER NUMBER','assign_task',4,'p_assign_task','Parser.py',150),
+  ('generate_project -> GENERATE_PROJECT NUMBER','generate_project',2,'p_generate_project','Parser.py',157),
+  ('generate_pie -> GENERATE_PIE NAMELIST NUMBERLIST','generate_pie',3,'p_generate_pie','Parser.py',164),
+  ('generate_bar -> GENERATE_BAR NAMELIST NUMBERLIST','generate_bar',3,'p_generate_bar','Parser.py',171),
 ]

@@ -5,6 +5,8 @@ import functools
 import pickle #For data persistense
 from plotly.offline import plot
 import plotly.figure_factory as ff #For Gantt charts
+import matplotlib.pyplot as plt
+import numpy as np
 
 #Global variables
 last_tid = 0
@@ -526,6 +528,36 @@ def generate_project (pid):
             proj.generate_project(pid)
     except FileNotFoundError:
             print("ERROR: No projects created with pid="+str(pid))
+
+# Utils for generating charts
+def generate_pie(labels, values):
+    cleanstr = labels.replace("(", "").replace(")","")
+    labels = cleanstr.split(",")
+    cleanint = values.replace("(", "").replace(")","")
+    values = list(map(int, cleanint.split(",")))
+
+    if len(labels) != len(values):
+        print("ERROR: # of Labels must match # of Values")
+    else:
+        print("Generating pie chart...")
+        plt.pie(values, labels=labels, autopct='%1.1f%%')
+        plt.axis('equal')
+        plt.show()
+
+def generate_bar(labels, values):
+    cleanstr = labels.replace("(", "").replace(")","")
+    labels = cleanstr.split(",")
+    cleanint = values.replace("(", "").replace(")","")
+    values = list(map(int, cleanint.split(",")))
+
+    if len(labels) != len(values):
+        print("ERROR: # of Labels must match # of Values")
+    else:
+        print("Generating bar chart...")
+        y_pos = np.arange(len(labels))
+        plt.bar(y_pos, values, align='center', alpha=0.5)
+        plt.xticks(y_pos, labels)
+        plt.show()
 
 '''
 #Generic Code to LOAD existing project
