@@ -146,7 +146,7 @@ class Project:
                 return user
         return None
 
-def edit_task(self, task_id, start_date, end_date):
+    def edit_task(self, task_id, start_date, end_date):
 
         task = self._find_task(task_id)
         try:
@@ -307,7 +307,6 @@ def get_filename(pid):
 
 def new_project(pname):
     proj = Project(pname)
-
     print('Project ' + pname + ' was created with ID ' + str(proj.get_pid()))
     save_project(proj)
 
@@ -317,9 +316,7 @@ def save_project(obj):
     file = get_filename(obj.get_pid())
     with open(file, 'wb') as output:
         global last_pid
-        print('Last project ID: ' + str(last_pid))
         pickle.dump(obj, output, pickle.HIGHEST_PROTOCOL)
-        print('Saving to file...')
 
 def add_user(username, pid):
     file = get_filename(pid)
@@ -333,7 +330,6 @@ def add_user(username, pid):
             #Add User to project
             proj.new_user(username)
             save_project(proj)
-            proj.show_users()
     except FileNotFoundError:
             print("ERROR: No projects created with pid="+str(pid))
 
@@ -351,7 +347,6 @@ def remove_user(uid, pid):
             #Add User to project
 
             save_project(proj)
-            proj.show_users()
     except FileNotFoundError:
             print("ERROR: No projects created with pid="+str(pid))
 
@@ -366,7 +361,6 @@ def view_members(pid):
             print("ERROR: No projects created with pid="+str(pid))
 
 def add_task(task, start_date, end_date, pid):
-    print('pid : ', pid)
     file = get_filename(pid)
     try:
         #Load project data
@@ -375,11 +369,9 @@ def add_task(task, start_date, end_date, pid):
             global last_tid
             if len(proj.tasks) > 0:
                 last_tid = proj.tasks[-1].id
-            #last_tid = proj.total_tasks
             #Add Task to project
             proj.new_task(task, start_date, end_date)
             save_project(proj)
-            proj.show_tasks()
     except FileNotFoundError:
             print("ERROR: No projects created with pid="+str(pid))
 
@@ -395,7 +387,6 @@ def remove_task(taskid, pid):
             #Remove task from project
             proj.delete_task(taskid)
             save_project(proj)
-            proj.show_tasks()
     except FileNotFoundError:
             print("ERROR: No projects created with pid="+str(pid))
 
@@ -411,7 +402,6 @@ def completed_task(taskid, pid):
             #Remove task from project
             proj.complete_task(taskid)
             save_project(proj)
-            proj.show_tasks()
     except FileNotFoundError:
             print("ERROR: No projects created with pid="+str(pid))
 
@@ -482,7 +472,6 @@ def generate_diagram(pid):
         with open(file, 'rb') as input:
             proj = pickle.load(input)
             proj.generate_brainstorming_diagram()
-            #save_project(proj)
 
     except FileNotFoundError:
             print("ERROR: No projects created with pid="+str(pid))
@@ -494,7 +483,6 @@ def generate_gantt(pid):
         with open(file, 'rb') as input:
             proj = pickle.load(input)
             proj.generate_gantt_chart()
-            #save_project(proj)
 
     except FileNotFoundError:
             print("ERROR: No projects created with pid="+str(pid))
@@ -511,11 +499,11 @@ def edit_task(taskid, start_date, end_date, pid):
             #Remove task from project
             proj.edit_task(taskid, start_date, end_date)
             save_project(proj)
-            proj.show_tasks()
     except FileNotFoundError:
             print("ERROR: No projects created with pid="+str(pid))
 
 def assign_task(taskid, memberid, pid):
+    print ('primer edit')
     file = get_filename(pid)
     try:
         #Load project data
@@ -527,7 +515,6 @@ def assign_task(taskid, memberid, pid):
             #Remove task from project
             proj.assign_task(taskid, memberid)
             save_project(proj)
-            proj.show_tasks()
     except FileNotFoundError:
             print("ERROR: No projects created with pid="+str(pid))
 
