@@ -44,3 +44,8 @@ PM Language will include the following features:
   - user will be able to enter the axis names of the graph
   - user will be able to enter a maximum of 100 values to create the graph.
   - system will be able to show the programmed graph
+  
+  ## Usage Demostration
+  
+  ### Creating project and adding members:
+  [![asciicast](https://asciinema.org/a/1qvy0ABK77WL6LvVggX2X0z5B.png)](https://asciinema.org/a/1qvy0ABK77WL6LvVggX2X0z5B)
