@@ -88,11 +88,11 @@ data3 = '''create_brainstorm brainstorn Name '''
 #data1 = 2012-02-20 2012-02-26
 
 # Give the lexer some input
-lexer.input(data0)
+#lexer.input(data0)
 
 # Tokenize
-while True:
-    tok = lexer.token()
-    if not tok:
-        break      # No more input
-    print(tok.type, tok.value, tok.lineno, tok.lexpos)
+# while True:
+#     tok = lexer.token()
+#     if not tok:
+#         break      # No more input
+#     print(tok.type, tok.value, tok.lineno, tok.lexpos)

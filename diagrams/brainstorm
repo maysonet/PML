@@ -1,9 +1,9 @@
 digraph {
-	"DieselManagement "
-	"use wifi for communicating the info of the power generator "
-	"usea a GSM and put sensors to extract data "
-	"put sensors to extract data "
-	"DieselManagement " -> "use wifi for communicating the info of the power generator "
-	"DieselManagement " -> "usea a GSM and put sensors to extract data "
-	"DieselManagement " -> "put sensors to extract data "
+	"Days of week "
+	"Monday "
+	"Friday "
+	"Saturday "
+	"Days of week " -> "Monday "
+	"Days of week " -> "Friday "
+	"Days of week " -> "Saturday "
 }

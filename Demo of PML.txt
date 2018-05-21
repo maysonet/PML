@@ -1,0 +1,19 @@
+--------------GENERATE_PROJECT--------------
+
+Project Name : Demo of PML
+
+Project Id : 1
+
+Project Members : 
+1: Coralis 
+2: Mikael 
+3: Eric 
+4: Chris 
+
+Project Tasks : 
+1: Edit video for Demo  [Start Date: 08-05-2018, End Date: 15-05-2018] [Done?: False] [Member id: 1]
+
+2: Add music to video  [Start Date: 10-05-2018, End Date: 20-05-2018] [Done?: False] [Member id: 2]
+
+4: Update documentation  [Start Date: 22-05-2018, End Date: 28-05-2018] [Done?: False] [Member id: None]
+
