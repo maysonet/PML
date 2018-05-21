@@ -59,3 +59,13 @@ PM Language will include the following features:
 ## Demo - Generated Files 
 1. **Brainstorm**:
 ![Brainstorm](/DemoFiles/brainstorm.png?raw=true "Demo Brainstorm")
+
+2. **Schedule (Gantt Chart)**:
+![Schedule](/DemoFiles/newplot.png?raw=true "Demo Schedule")
+
+2. **Charts (Pie, Bar, Line)**:
+![Pie](/DemoFiles/pie.png?raw=true "Demo Pie")
+
+![Bar](/DemoFiles/bar.png?raw=true "Demo Bar")
+
+![Line](/DemoFiles/line.png?raw=true "Demo Line")
