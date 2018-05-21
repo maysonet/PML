@@ -61,14 +61,14 @@ PM Language will include the following features:
 
 ## Demo - Generated Files 
 1. **Brainstorm**:  
-![Brainstorm](/DemoFiles/brainstorm.png?raw=true "Demo Brainstorm")
+![Brainstorm](https://raw.githubusercontent.com/maysonet/PML/master/DemoFiles/brainstorm.png "Demo Brainstorm")
 
 2. **Schedule (Gantt Chart)**:  
-![Schedule](/DemoFiles/newplot.png?raw=true "Demo Schedule")
+![Schedule](https://raw.githubusercontent.com/maysonet/PML/master/DemoFiles/newplot.png "Demo Schedule")
 
 2. **Charts (Pie, Bar, Line)**:  
-![Pie](/DemoFiles/pie.png?raw=true "Demo Pie")    
+![Pie](https://raw.githubusercontent.com/maysonet/PML/master/DemoFiles/pie.png "Demo Pie")    
 
-![Bar](/DemoFiles/bar.png?raw=true "Demo Bar")   
+![Bar](https://raw.githubusercontent.com/maysonet/PML/master/DemoFiles/bar.png "Demo Bar")   
 
-![Line](/DemoFiles/line.png?raw=true "Demo Line")   
+![Line](https://raw.githubusercontent.com/maysonet/PML/master/DemoFiles/line.png "Demo Line")   
