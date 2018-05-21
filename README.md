@@ -47,5 +47,14 @@ PM Language will include the following features:
   
   ## Usage Demostration
   
-  ### Creating project and adding members:
+  1. **Creating project and adding members**:
   [![asciicast](https://asciinema.org/a/1qvy0ABK77WL6LvVggX2X0z5B.png)](https://asciinema.org/a/1qvy0ABK77WL6LvVggX2X0z5B)
+  
+  2. **Generating Brainstorm**:
+  [![asciicast](https://asciinema.org/a/pusvFA0k6MhN4SAV785wlmjuI.png)](https://asciinema.org/a/pusvFA0k6MhN4SAV785wlmjuI)
+  
+  3. **Tasks - Planning and Scheduling*:
+  [![asciicast](https://asciinema.org/a/rpKUqMTRT2VhVFS02AeuvBuaZ.png)](https://asciinema.org/a/rpKUqMTRT2VhVFS02AeuvBuaZ)
+  
+  4. **Generating project file and Charts**:
+  [![asciicast](https://asciinema.org/a/lJ5ku7o9JiNx1RPQbSOD0gfYv.png)](https://asciinema.org/a/lJ5ku7o9JiNx1RPQbSOD0gfYv)
