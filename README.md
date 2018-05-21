@@ -53,7 +53,7 @@ PM Language will include the following features:
   2. **Generating Brainstorm**:
   [![asciicast](https://asciinema.org/a/pusvFA0k6MhN4SAV785wlmjuI.png)](https://asciinema.org/a/pusvFA0k6MhN4SAV785wlmjuI)
   
-  3. **Tasks - Planning and Scheduling*:
+  3. **Tasks - Planning and Scheduling**:
   [![asciicast](https://asciinema.org/a/rpKUqMTRT2VhVFS02AeuvBuaZ.png)](https://asciinema.org/a/rpKUqMTRT2VhVFS02AeuvBuaZ)
   
   4. **Generating project file and Charts**:
