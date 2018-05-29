@@ -1,9 +1,7 @@
 digraph {
-	"Days of week "
+	"Days "
 	"Monday "
-	"Friday "
-	"Saturday "
-	"Days of week " -> "Monday "
-	"Days of week " -> "Friday "
-	"Days of week " -> "Saturday "
+	"Sunday "
+	"Days " -> "Monday "
+	"Days " -> "Sunday "
 }
