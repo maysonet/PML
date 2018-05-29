@@ -45,6 +45,9 @@ PM Language will include the following features:
   - user will be able to enter a maximum of 100 values to create the graph.
   - system will be able to show the programmed graph
   
+## Final Report
+[Download Report](https://github.com/maysonet/PML/raw/master/FinalReportPML.pdf)
+  
 ## Usage Demostration
   
 1. **Creating project and adding members**:  
